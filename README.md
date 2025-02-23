@@ -1,6 +1,12 @@
 # To start the dev server:
 npm run dev
 
+# Routing, install package
+npm install react-router-dom
+
+# Upgrade React to 19
+npm install react@19 react-dom@19
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
