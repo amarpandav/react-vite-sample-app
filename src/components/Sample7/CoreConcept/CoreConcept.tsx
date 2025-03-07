@@ -1,11 +1,10 @@
 //Limitation: Looks like these styles are applied only to this component, but its not, its applied globally:(
 import "./CoreConcept.css";
 
-interface Props{
+interface Props {
     image: string;
     title: string;
     description: string;
-
 }
 
 export default function CoreConcept(props: Props) {

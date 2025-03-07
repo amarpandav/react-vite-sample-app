@@ -1,7 +1,7 @@
 import {NavLink} from "react-router-dom";
-import classes from "./HeaderNavAdmin.module.css";
+import classes from "./AdminHeaderNav.module.css";
 
-export default function HeaderNavAdmin() {
+export default function AdminHeaderNav() {
 
     return (
 

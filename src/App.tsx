@@ -12,14 +12,17 @@ import Sample5Page from "./components/Sample5/Sample5Page.tsx";
 import Sample6Page from "./components/Sample6/Sample6Page.tsx";
 import Sample7Page from "./components/Sample7/Sample7Page.tsx";
 import Sample8Page from "./components/Sample8/Sample8Page.tsx";
-import RootLayout from "./components/RootLayout/RootLayout.tsx";
-import SystemSettings from "./components/RootLayoutAdmin/SystemSettings.tsx";
-import AdminHome from "./components/RootLayoutAdmin/AdminHome.tsx";
-import RootLayoutAdmin from "./components/RootLayoutAdmin/RootLayoutAdmin.tsx";
+import RootLayout from "./components/Layout/RootLayout.tsx";
+import AdminSystemSettings from "./components/Admin/AdminSysSettings/AdminSystemSettings.tsx";
+import AdminHome from "./components/Admin/AdminHome/AdminHome.tsx";
+import AdminLayout from "./components/Admin/AdminLayout/AdminLayout.tsx";
 import Error from "./components/ErrorPage/Error.tsx";
 import Sample9Page from "./components/Sample9/Sample9Page.tsx";
 import Sample10ProductPage from "./components/Sample10/Sample10ProductPage.tsx";
 import Sample10ProductDetailsPage from "./components/Sample10/Sample10ProductDetailsPage.tsx";
+import EventsLayout from "./events-sample-app/EventsLayout/EventsLayout.tsx";
+import EventsHomePage from "./events-sample-app/pages/EventsHomePage.tsx";
+import EventsPage from "./events-sample-app/pages/EventsPage.tsx";
 
 const router = createBrowserRouter([
 
@@ -51,7 +54,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/admin',
-        element: <RootLayoutAdmin></RootLayoutAdmin>,
+        element: <AdminLayout></AdminLayout>,
         children: [
             /*
             //option 1: Absolute path
@@ -60,10 +63,18 @@ const router = createBrowserRouter([
 
             /*option 2:Relative path to /admin*/
             {path: 'home', element: <AdminHome></AdminHome>},
-            {path: 'systemSettings', element: <SystemSettings></SystemSettings>}
+            {path: 'systemSettings', element: <AdminSystemSettings></AdminSystemSettings>}
         ]
     },
-
+    {
+        path: '/events',
+        element: <EventsLayout></EventsLayout>,
+        children: [
+            /*option 2:Relative path to /events*/
+            {path: 'home', element: <EventsHomePage></EventsHomePage>},
+            {path: 'events', element: <EventsPage></EventsPage>}
+        ]
+    },
 
 ]);
 export default function App() {

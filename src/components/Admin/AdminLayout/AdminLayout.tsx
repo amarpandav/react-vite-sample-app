@@ -1,13 +1,13 @@
-import reactImg from "../../assets/react.svg";
+import reactImg from "../../../assets/react.svg";
 import {Outlet} from "react-router-dom";
-import HeaderNavAdmin from "./HeaderNavAdmin.tsx";
+import AdminHeaderNav from "../AdminHeader/AdminHeaderNav.tsx";
 
-export default function RootLayoutAdmin() {
+export default function AdminLayout() {
 
     return (
         <>
             <h1><img src={reactImg} alt="title"/>React Sample App/Admin mode</h1>
-            <HeaderNavAdmin></HeaderNavAdmin>
+            <AdminHeaderNav></AdminHeaderNav>
 
             <Outlet></Outlet>
 

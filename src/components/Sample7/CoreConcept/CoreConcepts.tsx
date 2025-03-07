@@ -9,11 +9,11 @@ export default function CoreConcepts() {
         <section id="core-concepts">
             <h2>Core Concepts</h2>
             {
-                [<p>Hello</p>, <p>World as an array of JSX elements</p>]
+                [<p key={0}>Hello</p>, <p key={1}>World as an array of JSX elements</p>]
             }
             <ul>
                 {CORE_CONCEPT_TESTDATA.map((item) => (
-                    <CoreConcept key={item.title}
+                    <CoreConcept key={item.id}
                                  title={item.title}
                                  description={item.description}
                                  image={item.image}></CoreConcept>

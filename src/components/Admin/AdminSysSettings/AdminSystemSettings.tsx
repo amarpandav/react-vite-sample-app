@@ -1,4 +1,4 @@
-export default function SystemSettings() {
+export default function AdminSystemSettings() {
 
     return (
         <div>
