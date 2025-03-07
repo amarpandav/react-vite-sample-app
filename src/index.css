@@ -4,6 +4,65 @@
   box-sizing: border-box;
 }
 
+
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  --color-gray-100: #f4f3f1;
+  --color-gray-200: #dddbd8;
+  --color-gray-300: #ccc9c6;
+  --color-gray-400: #aeaba7;
+  --color-gray-500: #8a8784;
+  --color-gray-600: #656360;
+  --color-gray-700: #4b4a47;
+  --color-gray-800: #31302e;
+  --color-gray-900: #1f1d1b;
+
+  --color-primary-100: #fcf3e1;
+  --color-primary-200: #fceccd;
+  --color-primary-300: #fae1af;
+  --color-primary-400: #fbd997;
+  --color-primary-500: #ffd37c;
+  --color-primary-600: #f9c762;
+  --color-primary-700: #fbc14d;
+  --color-primary-800: #fab833;
+  --color-primary-900: #f6ad1b;
+
+
+  --color-blue-100: #e1f3fc;  /* Lightest blue */
+  --color-blue-200: #cdeafc;
+  --color-blue-300: #afdffa;
+  --color-blue-400: #97d5fb;
+  --color-blue-500: #7cc8ff;  /* Base blue */
+  --color-blue-600: #62b9f9;
+  --color-blue-700: #4daefb;
+  --color-blue-800: #33a1fa;
+  --color-blue-900: #1b91f6;  /* Deepest blue */
+}
+
+body {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 html {
   font-family: "Quicksand", sans-serif;
   line-height: 1.5;
@@ -23,5 +82,7 @@ main {
   width: 90%;
   max-width: 50rem;
   margin: auto;
+  margin: 2rem auto;
+  text-align: center;
 }
 

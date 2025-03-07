@@ -1,6 +1,6 @@
 //Limitation: Looks like these styles are applied only to this component, but its not, its applied globally:(
 import "./CoreConcept.css";
-import {CORE_CONCEPT_TESTDATA} from "../../test-data/core-concept-testdata.ts";
+import {CORE_CONCEPT_TESTDATA} from "../../../test-data/core-concept-testdata.ts";
 import CoreConcept from "./CoreConcept.tsx";
 
 export default function CoreConcepts() {

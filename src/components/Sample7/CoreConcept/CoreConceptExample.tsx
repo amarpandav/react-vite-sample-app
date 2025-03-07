@@ -2,11 +2,14 @@
 
 import TabButton from "../Tab/TabButton.tsx";
 import {useState} from "react";
-import {CORE_CONCEPT_EXAMPLE_TESTDATA} from "../../test-data/core-concept-example-testdata.ts";
-import {Section} from "../Section.tsx";
+import {CORE_CONCEPT_EXAMPLE_TESTDATA} from "../../../test-data/core-concept-example-testdata.ts";
+import {Section} from "../../Section.tsx";
 import Tabs from "../Tab/Tabs.tsx";
 
-export default function CoreConceptExample() {
+interface Props {
+    title: string
+}
+export default function CoreConceptExample({title}: Props) {
 
     let selectedTopicMessage1 = "Message1: Please select a Topic";
     const [selectedTopicMessage2, setSelectedTopicMessage2] = useState("Message2: Please select a Topic");
@@ -27,7 +30,7 @@ export default function CoreConceptExample() {
 
     return (
         <Section id="core-concepts-examples"
-                 title="Sample 7: select a topic: children with click (TabButton component)">
+                 title={title}>
             <Tabs buttons={<>
                 <TabButton isSelected={selectedTopic === 'components'}
                            onClick={() => onClickSelectedTopic('components')}>Components</TabButton>
