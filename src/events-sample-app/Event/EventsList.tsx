@@ -1,5 +1,5 @@
 //import {EVENT_TESTDATA} from "../../test-data/events-testdata.ts";
-import {Link, Outlet} from "react-router-dom";
+import {Link, Outlet, /*useLoaderData*/} from "react-router-dom";
 import {EventDto} from "./Event.model.ts";
 import classes from './EventsList.module.css';
 
@@ -7,6 +7,10 @@ interface Props {
     events: EventDto[];
 }
 export default function EventsList({events}: Props ) {
+
+    //instead of getting events as props we can also load it from leader if we are using loader function in App.tsx
+    //const events = useLoaderData(); //coming from loader function from App.tst
+
     return (
         <div className={classes.events}>
             <h3>All Events</h3>

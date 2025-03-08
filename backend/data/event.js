@@ -7,6 +7,11 @@ const { NotFoundError } = require('../util/errors');
 async function readData() {
   const data = await fs.readFile('events.json', 'utf8');
   return JSON.parse(data);
+  /*setTimeout(() => {
+    //introduce a delay to simulate a slow network connection
+    return JSON.parse(data);
+  }, 1500);*/
+
 }
 
 async function writeData(data) {

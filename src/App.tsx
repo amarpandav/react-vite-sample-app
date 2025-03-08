@@ -24,7 +24,8 @@ import EventsLayout from "./events-sample-app/EventsLayout/EventsLayout.tsx";
 import EventDetailsPage from "./events-sample-app/pages/EventDetailsPage.tsx";
 import NewEventPage from "./events-sample-app/pages/NewEventPage.tsx";
 import EditEventPage from "./events-sample-app/pages/EditEventPage.tsx";
-import EventsPage from "./events-sample-app/pages/EventsPage.tsx";
+import EventsPage /*,{eventsLoader}*/ from "./events-sample-app/pages/EventsPage.tsx";
+//import {convertToDate} from "./events-sample-app/utils/dateUtils.ts";
 
 const router = createBrowserRouter([
 
@@ -57,6 +58,7 @@ const router = createBrowserRouter([
     {
         path: '/admin',
         element: <AdminLayout></AdminLayout>,
+        errorElement: <Error></Error>,
         children: [
             /*
             //option 1: Absolute path
@@ -72,6 +74,7 @@ const router = createBrowserRouter([
         path: '/events-module',
         //element: <EventsLayout></EventsLayout>,
         element: <RootLayout></RootLayout>,
+        errorElement: <Error></Error>,
         children: [
             /*option 2:Relative path to /events*/
             /*we do not need it as RootLayout is directly navigating to /events{index: true, element: <EventsHomePage></EventsHomePage>},*//*{path: 'home', element: <EventsHomePage></EventsHomePage>},*/
@@ -98,7 +101,27 @@ const router = createBrowserRouter([
                 path: 'events',
                 element: <EventsLayout></EventsLayout>,
                 children: [
-                    {index: true/*path: ''*/, element: <EventsPage></EventsPage>},
+                    {
+                        index: true/*path: ''*/, element: <EventsPage></EventsPage>,
+                        /* incase you want load the data before visiting EventsPage. You can also move this code into a function inside EventsPage so App.tsx file is leaner.
+                        loader: async () => {
+                            const response = await fetch('http://localhost:8080/events');
+                            if (!response.ok) {
+                                // throw new Error('Fetching events failed.');
+                                //...lets handle lader
+                            } else {
+                                const resData = await response.json();
+                                const events = resData.events;
+                                events.map((event) => {
+                                    if (event.eventDate) {
+                                        event.eventDate = convertToDate(event.eventDate);
+                                    }
+                                });
+                                return events;
+                            }
+                        }*/
+                        //option 2: outsource code to lead events inside EventsPage. loader: eventsLoader
+                    },
                     {path: ':eventId', element: <EventDetailsPage></EventDetailsPage>},
                     {path: 'new', element: <NewEventPage></NewEventPage>},
                     {path: ':eventId/edit', element: <EditEventPage></EditEventPage>},
