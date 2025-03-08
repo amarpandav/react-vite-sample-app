@@ -21,11 +21,10 @@ import Sample9Page from "./components/Sample9/Sample9Page.tsx";
 import Sample10ProductPage from "./components/Sample10/Sample10ProductPage.tsx";
 import Sample10ProductDetailsPage from "./components/Sample10/Sample10ProductDetailsPage.tsx";
 import EventsLayout from "./events-sample-app/EventsLayout/EventsLayout.tsx";
-import EventsHomePage from "./events-sample-app/pages/EventsHomePage.tsx";
-import AllEventsPage from "./events-sample-app/pages/AllEventsPage.tsx";
 import EventDetailsPage from "./events-sample-app/pages/EventDetailsPage.tsx";
 import NewEventPage from "./events-sample-app/pages/NewEventPage.tsx";
 import EditEventPage from "./events-sample-app/pages/EditEventPage.tsx";
+import EventsPage from "./events-sample-app/pages/EventsPage.tsx";
 
 const router = createBrowserRouter([
 
@@ -99,7 +98,7 @@ const router = createBrowserRouter([
                 path: 'events',
                 element: <EventsLayout></EventsLayout>,
                 children: [
-                    {index: true/*path: ''*/, element: <AllEventsPage></AllEventsPage>},
+                    {index: true/*path: ''*/, element: <EventsPage></EventsPage>},
                     {path: ':eventId', element: <EventDetailsPage></EventDetailsPage>},
                     {path: 'new', element: <NewEventPage></NewEventPage>},
                     {path: ':eventId/edit', element: <EditEventPage></EditEventPage>},
