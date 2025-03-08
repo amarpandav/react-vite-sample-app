@@ -26,6 +26,7 @@ export default function HeaderNav() {
                 <nav>
                     <ul className={classes.list}>
                         <li> <NavLink to="/admin/home" className={ ({isActive})=> isActive ? classes.active : undefined} style={{color: 'blue'}}>Enter Admin Mode</NavLink></li>
+                        <li> <NavLink to="/events-module/events" className={ ({isActive})=> isActive ? classes.active : undefined} style={{color: 'pink'}}>Enter Events App</NavLink></li>
                         {/*looks like end keyword is not needed in latest React. As per trainer thats needed otherwise home nav is always active*/}
                         <li> <NavLink to="/" className={ ({isActive})=> isActive ? classes.active : undefined} end>Home without /home</NavLink></li>
                         <li> <NavLink to="/home" className={ ({isActive})=> isActive ? classes.active : undefined}>Home</NavLink></li>

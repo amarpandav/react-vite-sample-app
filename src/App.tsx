@@ -22,7 +22,10 @@ import Sample10ProductPage from "./components/Sample10/Sample10ProductPage.tsx";
 import Sample10ProductDetailsPage from "./components/Sample10/Sample10ProductDetailsPage.tsx";
 import EventsLayout from "./events-sample-app/EventsLayout/EventsLayout.tsx";
 import EventsHomePage from "./events-sample-app/pages/EventsHomePage.tsx";
-import EventsPage from "./events-sample-app/pages/EventsPage.tsx";
+import AllEventsPage from "./events-sample-app/pages/AllEventsPage.tsx";
+import EventDetailsPage from "./events-sample-app/pages/EventDetailsPage.tsx";
+import NewEventPage from "./events-sample-app/pages/NewEventPage.tsx";
+import EditEventPage from "./events-sample-app/pages/EditEventPage.tsx";
 
 const router = createBrowserRouter([
 
@@ -67,14 +70,44 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path: '/events',
-        element: <EventsLayout></EventsLayout>,
+        path: '/events-module',
+        //element: <EventsLayout></EventsLayout>,
+        element: <RootLayout></RootLayout>,
         children: [
             /*option 2:Relative path to /events*/
-            {path: 'home', element: <EventsHomePage></EventsHomePage>},
-            {path: 'events', element: <EventsPage></EventsPage>}
+            /*we do not need it as RootLayout is directly navigating to /events{index: true, element: <EventsHomePage></EventsHomePage>},*//*{path: 'home', element: <EventsHomePage></EventsHomePage>},*/
+            {
+                /* option 1: above it needs <EventsLayout></EventsLayout>
+                If you use children in a route, you need to use the Outlet component to render the child routes of the current route.
+                Hence in EventsPage.tsx, you need to use the Outlet. But problem is it also renders the EventsPage contents which i don't want hence
+                removed this block of code and going ahead with normal rendering.
+                path: 'events', element: <EventsPage></EventsPage>, children: [
+                    {path: ':eventId', element: <EventDetailsPage></EventDetailsPage>},
+                    {path: 'new', element: <NewEventPage></NewEventPage>},
+                    {path: ':eventId/edit', element: <EditEventPage></EditEventPage>},
+                ]*/
+            },
+            /*
+            option 2: above it needs <EventsLayout></EventsLayout>
+            {path: 'events', element: <EventsPage></EventsPage>},
+            {path: 'events/:eventId', element: <EventDetailsPage></EventDetailsPage>},
+            {path: 'events/new', element: <NewEventPage></NewEventPage>},
+            {path: 'events/:eventId/edit', element: <EditEventPage></EditEventPage>},*/
+
+            {
+                /*option 3: above it needs <RootLayout></RootLayout>*/
+                path: 'events',
+                element: <EventsLayout></EventsLayout>,
+                children: [
+                    {index: true/*path: ''*/, element: <AllEventsPage></AllEventsPage>},
+                    {path: ':eventId', element: <EventDetailsPage></EventDetailsPage>},
+                    {path: 'new', element: <NewEventPage></NewEventPage>},
+                    {path: ':eventId/edit', element: <EditEventPage></EditEventPage>},
+                ]
+            }
         ]
-    },
+    }
+
 
 ]);
 export default function App() {

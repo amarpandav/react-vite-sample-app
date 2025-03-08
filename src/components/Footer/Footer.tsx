@@ -18,7 +18,7 @@ export default function Footer() {
                 //Footer is generic page so it would respect root path always
 
             }
-            <Link to=".." relative="path">Back</Link>
+            <Link to=".." relative="path">Back to Home Root</Link>
 
             {
                 //Option 2: Using route. This will follow the path defined in App.tsx which is router path.
