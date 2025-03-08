@@ -32,7 +32,7 @@ async function get(id) {
     throw new NotFoundError('Could not find any events.');
   }
 
-  const event = storedData.events.find((ev) => ev.id === id);
+  const event = storedData.events.find((ev) => ev.eventId.id === id);
   if (!event) {
     throw new NotFoundError('Could not find event for id ' + id);
   }

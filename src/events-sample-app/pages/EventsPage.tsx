@@ -1,9 +1,9 @@
 
 import EventsList from "../Event/EventsList.tsx";
-//import {useLoaderData} from "react-router-dom";
+// {useLoaderData} from "react-router-dom";
+//import {useLoaderData,} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {EventDto} from "../Event/Event.model.ts";
-import {convertToDate} from "../utils/dateUtils.ts";
 
 //import EventsList from '../components/EventsList';
 
@@ -29,18 +29,25 @@ export default function EventsPage() {
 
             if (!response.ok) {
                 //setError('Fetching events failed.');
-                throw new Error('Fetching events failed.');
+                //throw new Error('Fetching events failed.');
+                //throw new Response(JSON.stringify({message: 'Fetching events failed.', status: response.status}));
+
+                /*When using useEffect(), throwing an error like throw new Response(...) won't trigger React Router's error handling because it's not part of a loader. Instead, you need to handle the error inside your component and manually navigate to the error page.*/
+                throw new Response(JSON.stringify({message: 'Fetching events failed.'}), {status: 500});
+                //return Response.json({message: 'Fetching events failed.'}, {status: 500});
             } else {
                 const resData = await response.json();
-                const events = resData.events;
+                const eventsJson = resData.events;
+                const eventDtos = EventDto.parseJsonArray(eventsJson);
+                /*
                 events.map((event   ) => {
                     if(event.eventDate) {
-                        event.eventDate = convertToDate(event.eventDate);
+                        event.eventDate = DateUtils.parseISODate(event.eventDate);
                     }
 
-                } );
+                } );*/
 
-                setFetchedEvents(events);
+                setFetchedEvents(eventDtos);
             }
             setIsLoading(false);
         }
