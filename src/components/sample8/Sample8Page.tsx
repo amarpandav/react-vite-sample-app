@@ -1,5 +1,5 @@
 import DynamicComponentType from "./DynamicComponentType/DynamicComponentType.tsx";
-import Message from "../Sample1/Message.tsx";
+import Message from "../sample1/Message.tsx";
 
 export default function Sample8Page() {
 

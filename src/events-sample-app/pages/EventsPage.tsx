@@ -1,9 +1,9 @@
 
-import EventsList from "../Event/EventsList.tsx";
+import EventsList from "../event/EventsList.tsx";
 // {useLoaderData} from "react-router-dom";
 //import {useLoaderData,} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {EventDto} from "../Event/Event.model.ts";
+import {EventDto} from "../event/Event.model.ts";
 
 //import EventsList from '../components/EventsList';
 

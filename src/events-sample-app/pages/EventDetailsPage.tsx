@@ -1,6 +1,7 @@
 import {Link, LoaderFunctionArgs, useLoaderData, /*useParams*/} from "react-router-dom";
-import {EventDto} from "../Event/Event.model.ts";
+import {EventDto} from "../event/Event.model.ts";
 import {DateUtils} from "../../utils/DateUtils.ts";
+//import {ErrorDto} from "../../components/ErrorPage/Error.tsx";
 
 export default function EventDetailsPage() {
     //const params = useParams();
@@ -44,11 +45,24 @@ export async function loader({request, params}: LoaderFunctionArgs) {
             // If JSON parsing fails (e.g., HTML error page is returned), fall back to raw text
             //const stack = await response.text();  // Get the raw HTML or text
             //throw new Error(`Failed to fetch event details. Error: ${errorMessage}`);
-            const stack = response.url + " "+response.statusText;
+
+            //No idea why we get : SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+            console.log("error in EventDetailsPage.loader is: "+error);
+
+            /*
+            This is not working. in Error.tsx, everything is empty
+            const stack = response.url + " "+response.statusText + " "+error;
+            throw Response.json( new ErrorDto(response.status, 'Fetching event details for event id ' + eventId + ' failed.', stack), {status: response.status});
+                //{message: 'Fetching event details for event id ' + eventId + ' failed.', stack: stack},
+                //{status: response.status},
+                */
+
+            const stack = response.url + " "+response.statusText+ ". "+error;
             throw Response.json(
                 {message: 'Fetching event details for event id ' + eventId + ' failed.', stack: stack},
                 {status: response.status},
             );
+
         }
 
     }

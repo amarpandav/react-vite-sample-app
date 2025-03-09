@@ -1,4 +1,4 @@
-import Button from "../Sample5/Button.tsx";
+import Button from "../sample5/Button.tsx";
 import Alert3 from "../Alert3.tsx";
 import {useState} from "react";
 

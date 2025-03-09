@@ -1,9 +1,9 @@
 import reactImg from "../../assets/react.svg";
 import {Outlet, useNavigation} from "react-router-dom";
-import HeaderNav from "../Header/HeaderNav.tsx";
+import HeaderNav from "../header/HeaderNav.tsx";
 
 import classes from "./RootLayout.module.css";
-import Footer from "../Footer/Footer.tsx";
+import Footer from "../footer/Footer.tsx";
 
 export default function RootLayout() {
     const navigation = useNavigation();

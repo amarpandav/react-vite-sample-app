@@ -1,6 +1,6 @@
 import reactImg from "../../../assets/react.svg";
 import {Outlet} from "react-router-dom";
-import AdminHeaderNav from "../AdminHeader/AdminHeaderNav.tsx";
+import AdminHeaderNav from "../adminHeader/AdminHeaderNav.tsx";
 
 export default function AdminLayout() {
 

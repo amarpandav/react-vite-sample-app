@@ -1,5 +1,5 @@
 import {Outlet, useNavigation} from "react-router-dom";
-import EventsHeaderNav from "../EventsHeader/EventsHeaderNav.tsx";
+import EventsHeaderNav from "../eventsHeader/EventsHeaderNav.tsx";
 
 export default function EventsLayout() {
     // useNavigation is a hook that returns the current navigation state

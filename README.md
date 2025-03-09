@@ -7,6 +7,42 @@ npm install react-router-dom
 # Upgrade React to 19
 npm install react@19 react-dom@19
 
+# Examples learnt
+## useNavigation()
+- {navigation.state === 'loading'}
+- {navigation.state === 'error'}
+- {navigation.state === 'success'}
+- {navigation.state === 'idle'}
+- {navigation.state === 'stale'} and many more
+- {navigation.state === 'stale' && <button onClick={navigation.refresh}>Refresh</button>}
+- {navigation.state === 'stale' && <button onClick={navigation.reload}>Reload</button>}
+- {navigation.state === 'stale' && <button onClick={navigation.refetch}>Refetch</button>}
+- {navigation.state === 'stale' && <button onClick={navigation.retry}>Retry</button>}
+- {navigation.state === 'stale' && <button onClick={navigation.cancel}>Cancel</button>}
+- any any more
+
+## useState()
+- const [renderAlert3Component, setRenderAlert3Component] = useState(false)
+- setRenderAlert3Component(true);
+
+## useLoaderData
+- when route loader() returns response, how to access it in a component
+-  const eventJson = useLoaderData().event;
+-  const event: EventDto = EventDto.parseJson(eventJson);
+- 
+## useParams()
+- const params = useParams();
+    - {params.productId}
+
+## useRouteError()
+- const error = useRouteError() as {data: {message?: string; stack?: string}; status?: number};
+  - error?.data?.message
+  - error?.data?.stack
+  - error?.status
+
+
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
