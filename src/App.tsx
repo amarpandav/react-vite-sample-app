@@ -24,7 +24,8 @@ import EventsLayout from "./events-sample-app/eventsLayout/EventsLayout.tsx";
 import EventDetailsPage, {loader as eventDetailsLoader} from "./events-sample-app/pages/EventDetailsPage.tsx";
 import NewEventPage from "./events-sample-app/pages/NewEventPage.tsx";
 import EditEventPage from "./events-sample-app/pages/EditEventPage.tsx";
-import EventsPage /*,{eventsLoader}*/ from "./events-sample-app/pages/EventsPage.tsx";
+import EventsPage from "./events-sample-app/pages/EventsPage.tsx";
+import {ErrorBoundary} from "./components/errorBoundary/ErrorBoundary.tsx";
 //import {convertToDate} from "./events-sample-app/utils/dateUtils.ts";
 
 const router = createBrowserRouter([
@@ -122,9 +123,22 @@ const router = createBrowserRouter([
                         }*/
                         //option 2: outsource code to lead events inside EventsPage. loader: eventsLoader
                     },
-                    {path: ':eventId', element: <EventDetailsPage></EventDetailsPage>, loader: eventDetailsLoader},
+                    {
+                        path: ':eventId', loader: eventDetailsLoader,
+                        id: 'event-detail-id',
+                        children: [
+                            {
+                                index: true,
+                                element: /*working: <ErrorBoundary>*/<EventDetailsPage></EventDetailsPage>/*</ErrorBoundary>*/
+                            },
+                            //{path: ':eventId/edit', element: <EditEventPage></EditEventPage>},
+                            //:eventId moved to parent route
+                            {path: 'edit', element: <EditEventPage></EditEventPage>}
+                        ]
+
+                    },
                     {path: 'new', element: <NewEventPage></NewEventPage>},
-                    {path: ':eventId/edit', element: <EditEventPage></EditEventPage>},
+
                 ]
             }
         ]
@@ -133,5 +147,10 @@ const router = createBrowserRouter([
 
 ]);
 export default function App() {
-    return <RouterProvider router={router}></RouterProvider>;
+    return (<RouterProvider router={router}></RouterProvider>
+
+    /*Also not working: <ErrorBoundary fallback={<div>Something went wrong. Please try again later.</div>}>
+        <RouterProvider router={router}></RouterProvider>
+    </ErrorBoundary>*/
+    );
 }

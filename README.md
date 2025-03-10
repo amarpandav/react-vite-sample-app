@@ -1,5 +1,6 @@
 # To start the dev server:
-npm run dev
+npm run dev: react
+npm start: backend
 
 # Routing, install package
 npm install react-router-dom
@@ -35,6 +36,7 @@ npm install react@19 react-dom@19
     - {params.productId}
 
 ## useRouteError()
+-  hook is used in React Router to retrieve error details that were thrown inside a route's loader or during rendering.
 - const error = useRouteError() as {data: {message?: string; stack?: string}; status?: number};
   - error?.data?.message
   - error?.data?.stack

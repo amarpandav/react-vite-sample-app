@@ -1,4 +1,4 @@
-import {Link, LoaderFunctionArgs, useLoaderData, /*useParams*/} from "react-router-dom";
+import {Link, LoaderFunctionArgs, useLoaderData, useRouteLoaderData, /*useParams*/} from "react-router-dom";
 import {EventDto} from "../event/Event.model.ts";
 //import {DateUtils} from "../../utils/DateUtils.ts";
 import EventItem from "../eventItem/EventItem.tsx";
@@ -8,17 +8,20 @@ import EventItem from "../eventItem/EventItem.tsx";
 * loader() is getting called before the page starts rendering, so data fetch can start as early as possible.
 * Secondly how to get the data loaded by loader() into this page?
 * loader() returns the response and useLoaderData() retrieves it as is in json format.
-*
+* All good so far but what if other page also needs the same data? We can't call loader() again as it will make another call to backend.
+* Hence we use nested routing in App.tsx and useRouteLoaderData() will get the data from loader() and we can use it in multiple pages.
 */
 export default function EventDetailsPage() {
-    //const params = useParams();
-    const eventJson = useLoaderData().event; //why its event? because backend is sending event as key in json (p.s. events.js)
-    const event: EventDto = EventDto.parseJson(eventJson);
+    //const params = useParams();; no need to use useParams() as we are getting the data from loader() using useLoaderData()
+    //const eventJson = useLoaderData().event; //why its event? because backend is sending event as key in json (p.s. events.js)
+    const eventJson = useRouteLoaderData('event-detail-id').event;
+
+    const eventDto: EventDto = EventDto.parseJson(eventJson);
     return (
         <>
             <h3>Event Details Page</h3>
 
-            <EventItem eventDto={event}/>
+            <EventItem eventDto={eventDto}/>
 
             <Link to=".." relative="path">Back to List</Link>
         </>
@@ -37,6 +40,8 @@ export async function loader({request, params}: LoaderFunctionArgs) {
         //optional error handling. mostly we will have a toaster message or a modal to show the error.
         try {
             const errorDetails = await response.json();
+            console.log("error in EventDetailsPage.loader.try is: "+errorDetails);
+
             let stack = errorDetails.message;
             if(errorDetails.stack) {
                 stack = stack + errorDetails.stack;
@@ -53,7 +58,7 @@ export async function loader({request, params}: LoaderFunctionArgs) {
             //throw new Error(`Failed to fetch event details. Error: ${errorMessage}`);
 
             //No idea why we get : SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
-            console.log("error in EventDetailsPage.loader is: "+error);
+            console.log("error in EventDetailsPage.loader.catch is: "+error);
 
             /*
             This is not working. in Error.tsx, everything is empty
