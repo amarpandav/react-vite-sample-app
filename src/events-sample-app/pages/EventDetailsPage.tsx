@@ -1,34 +1,40 @@
 import {Link, LoaderFunctionArgs, useLoaderData, /*useParams*/} from "react-router-dom";
 import {EventDto} from "../event/Event.model.ts";
-import {DateUtils} from "../../utils/DateUtils.ts";
+//import {DateUtils} from "../../utils/DateUtils.ts";
+import EventItem from "../eventItem/EventItem.tsx";
 //import {ErrorDto} from "../../components/ErrorPage/Error.tsx";
 
+/*
+* loader() is getting called before the page starts rendering, so data fetch can start as early as possible.
+* Secondly how to get the data loaded by loader() into this page?
+* loader() returns the response and useLoaderData() retrieves it as is in json format.
+*
+*/
 export default function EventDetailsPage() {
     //const params = useParams();
-    const eventJson = useLoaderData().event;
+    const eventJson = useLoaderData().event; //why its event? because backend is sending event as key in json (p.s. events.js)
     const event: EventDto = EventDto.parseJson(eventJson);
     return (
         <>
             <h3>Event Details Page</h3>
 
-            <p>Event Id: {event.eventId.id}</p>
-            <p>Event title: {event.title}</p>
-            <p>Event Date: {DateUtils.formatISODate(event.eventDate)}</p>
+            <EventItem eventDto={event}/>
 
-            <Link to=".." relative="path">Back2</Link>
+            <Link to=".." relative="path">Back to List</Link>
         </>
     );
 }
 
 export async function loader({request, params}: LoaderFunctionArgs) {
     const eventId = params.eventId
-    const response = await fetch('http://localhost:8080/events1/' + eventId);
+    const response = await fetch('http://localhost:8080/events/' + eventId);
 
     console.log(request);
 
     if (response.ok) {
         return response;
     } else {
+        //optional error handling. mostly we will have a toaster message or a modal to show the error.
         try {
             const errorDetails = await response.json();
             let stack = errorDetails.message;

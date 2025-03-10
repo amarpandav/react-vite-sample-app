@@ -1,23 +1,27 @@
 import classes from './EventItem.module.css';
+import {Link} from "react-router-dom";
+import {EventDto} from "../event/Event.model.ts";
+import {DateUtils} from "../../utils/DateUtils.ts";
 //import {EventDto} from "../event/Event.model.ts";
 
-function EventItem({ event }) {
+interface Props {
+    eventDto: EventDto
+}
+export default function EventItem({ eventDto}: Props) {
   function startDeleteHandler() {
     // ...
   }
 
   return (
     <article className={classes.event}>
-      <img src={event.image} alt={event.title} />
-      <h1>{event.title}</h1>
-      <time>{event.date}</time>
-      <p>{event.description}</p>
+      <img src={eventDto.image} alt={eventDto.title} />
+      <h1>{eventDto.title}</h1>
+      <time>{DateUtils.formatISODate(eventDto.eventDate)}</time>
+      <p>{eventDto.description}</p>
       <menu className={classes.actions}>
-        <a href="edit">Edit</a>
+        <Link to="edit">Edit</Link>
         <button onClick={startDeleteHandler}>Delete</button>
       </menu>
     </article>
   );
 }
-
-export default EventItem;
