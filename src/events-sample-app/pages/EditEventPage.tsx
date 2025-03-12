@@ -1,5 +1,5 @@
 import EventForm from "../eventForm/EventForm.tsx";
-import {Link, LoaderFunctionArgs, useRouteLoaderData} from "react-router-dom";
+import {Link, LoaderFunctionArgs, redirect, useRouteLoaderData} from "react-router-dom";
 import {EventDto} from "../event/Event.model.ts";
 import {throwError} from "../../components/errorPage/RouteErrorPage.tsx";
 
@@ -45,7 +45,9 @@ export async function action({request, params}: LoaderFunctionArgs) {
     });
 
     if (response.ok) {
-        console.log("EditEventPage.action.response: ",response.json());
+        //console.log("EditEventPage.action.response: ",response.json());
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        return redirect("/events-module/events");
     } else {
         //optional error handling. mostly we will have a toaster message or a modal to show the error.
         await throwError('Editing event failed (method: EditEventPage.action).', response);
