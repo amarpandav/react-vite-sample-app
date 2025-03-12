@@ -16,7 +16,6 @@ export default function EventsList({events}: Props ) {
             <h3>All Events</h3>
             <ul className={classes.list}>
                 {
-
                     events.map((event) => (
                             <li key={event.eventId.id} className={classes.item}>
                                 <Link to={event.eventId.id}>

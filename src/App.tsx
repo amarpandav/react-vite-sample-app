@@ -21,7 +21,7 @@ import Sample9Page from "./components/sample9/Sample9Page.tsx";
 import Sample10ProductPage from "./components/sample10/Sample10ProductPage.tsx";
 import Sample10ProductDetailsPage from "./components/sample10/Sample10ProductDetailsPage.tsx";
 import EventsLayout from "./events-sample-app/eventsLayout/EventsLayout.tsx";
-import EventDetailsPage, {loader as eventDetailsLoader} from "./events-sample-app/pages/EventDetailsPage.tsx";
+import EventDetailsPage, {loader as eventDetailsLoader, action as deleteEventAction} from "./events-sample-app/pages/EventDetailsPage.tsx";
 import NewEventPage, {action as newEventAction} from "./events-sample-app/pages/NewEventPage.tsx";
 import EditEventPage, {action as editEventAction} from "./events-sample-app/pages/EditEventPage.tsx";
 import EventsPage from "./events-sample-app/pages/EventsPage.tsx";
@@ -130,7 +130,8 @@ const router = createBrowserRouter([
                         children: [
                             {
                                 index: true,
-                                element: /*working: <ErrorBoundary>*/<EventDetailsPage></EventDetailsPage>/*</ErrorBoundary>*/
+                                element: /*working: <ErrorBoundary>*/<EventDetailsPage></EventDetailsPage>,/*</ErrorBoundary>*/
+                                action: deleteEventAction
                             },
                             //{path: ':eventId/edit', element: <EditEventPage></EditEventPage>},
                             //:eventId moved to parent route
