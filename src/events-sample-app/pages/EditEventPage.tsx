@@ -1,5 +1,5 @@
 import EventForm from "../eventForm/EventForm.tsx";
-import { useRouteLoaderData} from "react-router-dom";
+import {Link, useRouteLoaderData} from "react-router-dom";
 import {EventDto} from "../event/Event.model.ts";
 
 /*
@@ -10,6 +10,7 @@ import {EventDto} from "../event/Event.model.ts";
 * we can also pass the eventDto here from EventDetailsPage but there is a better way using nested routing inside App.tsx and userLoaderData().
 * We moved loader() from EventDetailsPage.tsx to newly created parent node (having no element) and now we can use useRouteLoaderData() to get the data into 2 pages
 * EventDetailsPage and EventForm. EventDetailsPage.loader() will be executed twice. Once for EventDetailsPage and once for EventForm.
+*
 */
 
 export default function EditEventPage() {
@@ -19,7 +20,8 @@ export default function EditEventPage() {
     return (
         <>
             <h3>Event Mgmt - Edit Event Page</h3>
-            <EventForm method='edit' eventDto={eventDto}/>
+            <EventForm eventDto={eventDto}/>
+            <Link to=".." relative="path">Back to Details</Link>
         </>
     );
 }

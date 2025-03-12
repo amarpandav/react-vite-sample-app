@@ -14,7 +14,7 @@ export class DateUtils {
     public static formatISODate(date: Date | null | undefined): string {
         if(date){
             const s = new Intl.DateTimeFormat("de-CH", {day: '2-digit', month: '2-digit', year: 'numeric'}).format(date);
-            console.log(s);
+            console.log("formatISODate:"+s);
             return s;
         }
         return "";

@@ -124,7 +124,8 @@ const router = createBrowserRouter([
                         //option 2: outsource code to lead events inside EventsPage. loader: eventsLoader
                     },
                     {
-                        path: ':eventId', loader: eventDetailsLoader,
+                        path: ':eventId',
+                        loader: eventDetailsLoader,
                         id: 'event-detail-id',
                         children: [
                             {
