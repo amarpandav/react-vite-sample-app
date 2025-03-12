@@ -45,7 +45,7 @@ export async function action({request, params}: LoaderFunctionArgs) {
     });
 
     if (response.ok) {
-
+        console.log("EditEventPage.action.response: ",response.json());
     } else {
         //optional error handling. mostly we will have a toaster message or a modal to show the error.
         await throwError('Editing event failed (method: EditEventPage.action).', response);
