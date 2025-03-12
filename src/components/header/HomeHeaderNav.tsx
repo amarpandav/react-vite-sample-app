@@ -1,6 +1,6 @@
 import {NavLink} from "react-router-dom";
 import classes from './HeaderNav.module.css';
-export default function HeaderNav() {
+export default function HomeHeaderNav() {
 
     return (
 
@@ -25,11 +25,11 @@ export default function HeaderNav() {
             <header className={classes.header}>
                 <nav>
                     <ul className={classes.list}>
-                        <li> <NavLink to="/admin/home" className={ ({isActive})=> isActive ? classes.active : undefined} style={{color: 'blue'}}>Enter Admin Mode</NavLink></li>
-                        <li> <NavLink to="/events-module/events" className={ ({isActive})=> isActive ? classes.active : undefined} style={{color: 'pink'}}>Enter Events App</NavLink></li>
                         {/*looks like end keyword is not needed in latest React. As per trainer thats needed otherwise home nav is always active*/}
+                        {/*
                         <li> <NavLink to="/" className={ ({isActive})=> isActive ? classes.active : undefined} end>Home without /home</NavLink></li>
                         <li> <NavLink to="/home" className={ ({isActive})=> isActive ? classes.active : undefined}>Home</NavLink></li>
+                        */}
                         <li> <NavLink to="/sample1" className={ ({isActive})=> isActive ? classes.active : undefined}>Sample 1</NavLink></li>
                         <li> <NavLink to="/sample2" className={ ({isActive})=> isActive ? classes.active : undefined}>Sample 2: props vs state</NavLink></li>
                         <li><NavLink to="/sample3" className={ ({isActive})=> isActive ? classes.active : undefined}>Sample 3: passing children of type string</NavLink></li>

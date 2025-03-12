@@ -21,12 +21,16 @@ import Sample9Page from "./components/sample9/Sample9Page.tsx";
 import Sample10ProductPage from "./components/sample10/Sample10ProductPage.tsx";
 import Sample10ProductDetailsPage from "./components/sample10/Sample10ProductDetailsPage.tsx";
 import EventsLayout from "./events-sample-app/eventsLayout/EventsLayout.tsx";
-import EventDetailsPage, {loader as eventDetailsLoader, action as deleteEventAction} from "./events-sample-app/pages/EventDetailsPage.tsx";
-import NewEventPage  from "./events-sample-app/pages/NewEventPage.tsx";
+import EventDetailsPage, {
+    action as deleteEventAction,
+    loader as eventDetailsLoader
+} from "./events-sample-app/pages/EventDetailsPage.tsx";
+import NewEventPage from "./events-sample-app/pages/NewEventPage.tsx";
 import EditEventPage from "./events-sample-app/pages/EditEventPage.tsx";
 import {action as eventFormAction} from "./events-sample-app/eventForm/EventForm.tsx";
 
 import EventsPage from "./events-sample-app/pages/EventsPage.tsx";
+import HomeLayout from "./components/layout/HomeLayout.tsx";
 //import {ErrorBoundary} from "./components/errorBoundary/ErrorBoundary.tsx";
 //import {convertToDate} from "./events-sample-app/utils/dateUtils.ts";
 
@@ -36,41 +40,52 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <RootLayout></RootLayout>,
-        children: [
-            {path: '/', element: <HomePage></HomePage>}, /*other alternative: To turn any route into Index route. {index: true, element: <HomePage></HomePage>} */
-            //option 1: Absolute path
-            //{path: '/home', element: <HomePage></HomePage>},
-            //{path: '/sample1', element: <Sample1Page></Sample1Page>},
-
-            //option 2: Relative path
-            {path: 'home', element: <HomePage></HomePage>},
-            {path: 'sample1', element: <Sample1Page></Sample1Page>},
-            {path: 'sample2', element: <Sample2Page></Sample2Page>},
-            {path: 'sample3', element: <Sample3Page></Sample3Page>},
-            {path: 'sample4', element: <Sample4Page></Sample4Page>},
-            {path: 'sample5', element: <Sample5Page></Sample5Page>},
-            {path: 'sample6', element: <Sample6Page></Sample6Page>},
-            {path: 'sample7', element: <Sample7Page></Sample7Page>},
-            {path: 'sample8', element: <Sample8Page></Sample8Page>},
-            {path: 'sample9', element: <Sample9Page></Sample9Page>},
-            {path: 'sample10/', element: <Sample10ProductPage></Sample10ProductPage>},
-            {path: 'sample10/:productId', element: <Sample10ProductDetailsPage></Sample10ProductDetailsPage>},
-        ],
-        errorElement: <RouteErrorPage></RouteErrorPage>
-    },
-    {
-        path: '/admin',
-        element: <AdminLayout></AdminLayout>,
         errorElement: <RouteErrorPage></RouteErrorPage>,
         children: [
-            /*
+            {
+                path: '/',/*other alternative: To turn any route into Index route. {index: true, element: <HomePage></HomePage>} */
+                element: <HomeLayout></HomeLayout>,
+                children: [
+                    //option 1: Absolute path
+                    //{path: '/home', element: <HomePage></HomePage>},
+                    //{path: '/sample1', element: <Sample1Page></Sample1Page>},
+
+                    //option 2: Relative path
+                    {path: 'home', element: <HomePage></HomePage>},
+                    {path: 'sample1', element: <Sample1Page></Sample1Page>},
+                    {path: 'sample2', element: <Sample2Page></Sample2Page>},
+                    {path: 'sample3', element: <Sample3Page></Sample3Page>},
+                    {path: 'sample4', element: <Sample4Page></Sample4Page>},
+                    {path: 'sample5', element: <Sample5Page></Sample5Page>},
+                    {path: 'sample6', element: <Sample6Page></Sample6Page>},
+                    {path: 'sample7', element: <Sample7Page></Sample7Page>},
+                    {path: 'sample8', element: <Sample8Page></Sample8Page>},
+                    {path: 'sample9', element: <Sample9Page></Sample9Page>},
+                    {path: 'sample10/', element: <Sample10ProductPage></Sample10ProductPage>},
+                    {path: 'sample10/:productId', element: <Sample10ProductDetailsPage></Sample10ProductDetailsPage>},
+                ]
+            },
+        ],
+    },
+    {
+        path: '/admin-module',
+        element: <RootLayout></RootLayout>,
+        errorElement: <RouteErrorPage></RouteErrorPage>,
+        children: [
+            {
+                path: '/',
+                element: <AdminLayout></AdminLayout>,
+                children: [
+                    /*
             //option 1: Absolute path
             {path: '/admin/home', element: <AdminHome></AdminHome>},
             {path: '/admin/systemSettings', element: <SystemSettings></SystemSettings>}*/
 
-            /*option 2:Relative path to /admin*/
-            {path: 'home', element: <AdminHome></AdminHome>},
-            {path: 'systemSettings', element: <AdminSystemSettings></AdminSystemSettings>}
+                    /*option 2:Relative path to /admin*/
+                    {path: 'home', element: <AdminHome></AdminHome>},
+                    {path: 'systemSettings', element: <AdminSystemSettings></AdminSystemSettings>}
+                ]
+            }
         ]
     },
     {
@@ -137,11 +152,19 @@ const router = createBrowserRouter([
                             },
                             //{path: ':eventId/edit', element: <EditEventPage></EditEventPage>},
                             //:eventId moved to parent route
-                            {path: 'edit', element: <EditEventPage></EditEventPage>, action: eventFormAction/*, action: editEventAction*/}
+                            {
+                                path: 'edit',
+                                element: <EditEventPage></EditEventPage>,
+                                action: eventFormAction/*, action: editEventAction*/
+                            }
                         ]
 
                     },
-                    {path: 'new', element: <NewEventPage></NewEventPage>, action: eventFormAction/*, action: newEventAction*/},
+                    {
+                        path: 'new',
+                        element: <NewEventPage></NewEventPage>,
+                        action: eventFormAction/*, action: newEventAction*/
+                    },
 
                 ]
             }
@@ -153,8 +176,8 @@ const router = createBrowserRouter([
 export default function App() {
     return (<RouterProvider router={router}></RouterProvider>
 
-    /*Also not working: <ErrorBoundary fallback={<div>Something went wrong. Please try again later.</div>}>
-        <RouterProvider router={router}></RouterProvider>
-    </ErrorBoundary>*/
+        /*Also not working: <ErrorBoundary fallback={<div>Something went wrong. Please try again later.</div>}>
+            <RouterProvider router={router}></RouterProvider>
+        </ErrorBoundary>*/
     );
 }

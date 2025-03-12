@@ -1,4 +1,4 @@
-import HeaderNav from "../header/HeaderNav.tsx";
+import RootHeaderNav from "../header/RootHeaderNav.tsx";
 import PageContent from "../pageContent/PageContent.tsx";
 
 interface ErrorDto {
@@ -12,7 +12,7 @@ export default function Error(errorDto: ErrorDto) {
     return (
 
         <>
-            <HeaderNav></HeaderNav>
+            <RootHeaderNav></RootHeaderNav>
             {
                 /*
                 * <main>

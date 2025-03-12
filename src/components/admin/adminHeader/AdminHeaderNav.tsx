@@ -8,9 +8,9 @@ export default function AdminHeaderNav() {
         <header className={classes.header}>
             <nav>
                 <ul className={classes.list}>
-                    <li><NavLink to="/" className={ ({isActive})=> isActive ? classes.active : undefined} style={{color: 'orange'}}>Exit Admin Mode</NavLink></li>
-                    <li><NavLink to="/admin/home" className={ ({isActive})=> isActive ? classes.active : undefined}>Admin Home</NavLink></li>
-                    <li><NavLink to="/admin/systemSettings" className={ ({isActive})=> isActive ? classes.active : undefined}>System Settings</NavLink></li>
+                    {/*<li><NavLink to="/" className={ ({isActive})=> isActive ? classes.active : undefined} style={{color: 'orange'}}>Exit Admin Mode</NavLink></li>*/}
+                    <li><NavLink to="/home" className={ ({isActive})=> isActive ? classes.active : undefined}>Admin Home</NavLink></li>
+                    <li><NavLink to="/systemSettings" className={ ({isActive})=> isActive ? classes.active : undefined}>System Settings</NavLink></li>
                 </ul>
             </nav>
         </header>

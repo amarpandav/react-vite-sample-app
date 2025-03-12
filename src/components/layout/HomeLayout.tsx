@@ -1,17 +1,16 @@
-import reactImg from "../../assets/react.svg";
 import {Outlet, useNavigation} from "react-router-dom";
-import RootHeaderNav from "../header/RootHeaderNav.tsx";
 
 import classes from "./Layout.module.css";
 import Footer from "../footer/Footer.tsx";
+import HomeHeaderNav from "../header/HomeHeaderNav.tsx";
 
-export default function RootLayout() {
+export default function HomeLayout() {
     const navigation = useNavigation();
 
     return (
         <>
-            <h1><img src={reactImg} alt="title"/>React Sample App</h1>
-            <RootHeaderNav></RootHeaderNav>
+            <h2>Home App</h2>
+            <HomeHeaderNav></HomeHeaderNav>
             <main className={classes.content}>
                 {
                     //this will only work when we are loading data in App.tsx using loader()

@@ -7,9 +7,8 @@ export default function EventsLayout() {
 
     return (
         <>
-            <h2>Events Sample App</h2>
+            <h2>Events App</h2>
             <EventsHeaderNav></EventsHeaderNav>
-
             <main>
                 {
                     //this will only work when we are loading data in App.tsx using loader()
