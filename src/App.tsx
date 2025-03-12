@@ -16,13 +16,13 @@ import RootLayout from "./components/layout/RootLayout.tsx";
 import AdminSystemSettings from "./components/admin/adminSysSettings/AdminSystemSettings.tsx";
 import AdminHome from "./components/admin/adminHome/AdminHome.tsx";
 import AdminLayout from "./components/admin/adminLayout/AdminLayout.tsx";
-import Error from "./components/errorPage/Error.tsx";
+import RouteErrorPage from "./components/errorPage/RouteErrorPage.tsx";
 import Sample9Page from "./components/sample9/Sample9Page.tsx";
 import Sample10ProductPage from "./components/sample10/Sample10ProductPage.tsx";
 import Sample10ProductDetailsPage from "./components/sample10/Sample10ProductDetailsPage.tsx";
 import EventsLayout from "./events-sample-app/eventsLayout/EventsLayout.tsx";
 import EventDetailsPage, {loader as eventDetailsLoader} from "./events-sample-app/pages/EventDetailsPage.tsx";
-import NewEventPage from "./events-sample-app/pages/NewEventPage.tsx";
+import NewEventPage, {action as newEventAction} from "./events-sample-app/pages/NewEventPage.tsx";
 import EditEventPage from "./events-sample-app/pages/EditEventPage.tsx";
 import EventsPage from "./events-sample-app/pages/EventsPage.tsx";
 //import {ErrorBoundary} from "./components/errorBoundary/ErrorBoundary.tsx";
@@ -54,12 +54,12 @@ const router = createBrowserRouter([
             {path: 'sample10/', element: <Sample10ProductPage></Sample10ProductPage>},
             {path: 'sample10/:productId', element: <Sample10ProductDetailsPage></Sample10ProductDetailsPage>},
         ],
-        errorElement: <Error></Error>
+        errorElement: <RouteErrorPage></RouteErrorPage>
     },
     {
         path: '/admin',
         element: <AdminLayout></AdminLayout>,
-        errorElement: <Error></Error>,
+        errorElement: <RouteErrorPage></RouteErrorPage>,
         children: [
             /*
             //option 1: Absolute path
@@ -75,7 +75,7 @@ const router = createBrowserRouter([
         path: '/events-module',
         //element: <EventsLayout></EventsLayout>,
         element: <RootLayout></RootLayout>,
-        errorElement: <Error></Error>,
+        errorElement: <RouteErrorPage></RouteErrorPage>,
         children: [
             /*option 2:Relative path to /events*/
             /*we do not need it as RootLayout is directly navigating to /events{index: true, element: <EventsHomePage></EventsHomePage>},*//*{path: 'home', element: <EventsHomePage></EventsHomePage>},*/
@@ -138,7 +138,7 @@ const router = createBrowserRouter([
                         ]
 
                     },
-                    {path: 'new', element: <NewEventPage></NewEventPage>},
+                    {path: 'new', element: <NewEventPage></NewEventPage>, action: newEventAction},
 
                 ]
             }

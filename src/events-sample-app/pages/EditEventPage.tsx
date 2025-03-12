@@ -1,5 +1,5 @@
 import EventForm from "../eventForm/EventForm.tsx";
-import {Link, useRouteLoaderData} from "react-router-dom";
+import {Link, LoaderFunctionArgs, useRouteLoaderData} from "react-router-dom";
 import {EventDto} from "../event/Event.model.ts";
 
 /*
@@ -14,7 +14,7 @@ import {EventDto} from "../event/Event.model.ts";
 */
 
 export default function EditEventPage() {
-    const eventJson = useRouteLoaderData('event-detail-id').event; //why its event? because backend is sending event as key in json (p.s. events.js)
+    const eventJson = useRouteLoaderData('event-detail-id').event; //why its .event? because backend is sending event as key in json (p.s. events.js)
     const eventDto: EventDto = EventDto.parseJson(eventJson);
 
     return (
@@ -25,3 +25,44 @@ export default function EditEventPage() {
         </>
     );
 }
+
+/*tbd
+export async function action({request, params}: LoaderFunctionArgs) {
+    const data = await request.formData()
+    const eventAsJson = EventDto.toJson(data.get('title'), data.get('eventDate'), data.get('image'), data.get('description'));
+
+    console.log(JSON.stringify(eventAsJson));
+    const response = await fetch('http://localhost:8080/events', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(eventAsJson),
+    });
+
+    if(response.ok){
+
+    }else {
+        //optional error handling. mostly we will have a toaster message or a modal to show the error.
+        try {
+            const errorDetails = await response.json();
+            console.log("error in NewEventPage.action.try is: "+errorDetails);
+
+            let stack = errorDetails.message;
+            if(errorDetails.stack) {
+                stack = stack + errorDetails.stack;
+            }
+            throw Response.json(
+                {message: 'Creating new event failed.', stack: stack},
+                {status: response.status},
+            );
+        }catch (error) {
+            console.log("error in NewEventPage.action.catch is: "+error);
+            const stack = response.url + " "+response.statusText+ ". "+error;
+            throw Response.json(
+                {message: 'Creating new event failed.', stack: stack},
+                {status: response.status},
+            );
+        }
+    }
+}*/

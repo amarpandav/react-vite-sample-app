@@ -35,4 +35,13 @@ export class EventDto {
     public static parseJsonArray(json: unknown[]): EventDto[] {
         return json.map((event) => EventDto.parseJson(event));
     }
+
+    public static toJson(title: string, eventDate: string, image: string, description: string): Record<string, string> {
+        return {
+            title: title,
+            eventDate: eventDate,
+            image: image,
+            description: description
+        };
+    }
 }

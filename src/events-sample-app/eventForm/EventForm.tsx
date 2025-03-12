@@ -1,4 +1,4 @@
-import {useNavigate} from 'react-router-dom';
+import {Form, useNavigate} from 'react-router-dom';
 
 import classes from './EventForm.module.css';
 import {EventDto} from "../event/Event.model.ts";
@@ -17,23 +17,23 @@ function EventForm({ eventDto}: Props) {
   }
 
   return (
-    <form className={classes.form}>
+    <Form method='post' className={classes.form}>
       <p>
         <label htmlFor="title">Title</label>
-        <input id="title" type="text" name="title" required value={eventDto ? eventDto.title : ''}/>
+        <input id="title" type="text" name="title" required defaultValue={eventDto ? eventDto.title : ''}/>
       </p>
       <p>
         <label htmlFor="image">Image</label>
-        <input id="image" type="url" name="image" required value={eventDto ? eventDto.image : ''}/>
+        <input id="image" type="url" name="image" required defaultValue={eventDto ? eventDto.image : ''}/>
       </p>
       <p>
         <label htmlFor="date">Date</label>
           {/*Data is not displayed + selected date from picker throws format error */}
-        <input id="date" type="date" name="date" required value={eventDto ? DateUtils.formatISODate(eventDto.eventDate) : ''}/>
+        <input id="date" type="date" name="date" required defaultValue={eventDto ? DateUtils.formatISODate(eventDto.eventDate) : ''}/>
       </p>
       <p>
         <label htmlFor="description">Description</label>
-        <textarea id="description" name="description" rows={5} required value={eventDto ? eventDto.description : ''}/>
+        <textarea id="description" name="description" rows={5} required defaultValue={eventDto ? eventDto.description : ''}/>
       </p>
       <div className={classes.actions}>
         <button type="button" onClick={cancelHandler}>
@@ -41,7 +41,7 @@ function EventForm({ eventDto}: Props) {
         </button>
         <button>Save</button>
       </div>
-    </form>
+    </Form>
   );
 }
 
