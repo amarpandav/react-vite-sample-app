@@ -17,7 +17,7 @@ function EventForm({ eventDto}: Props) {
   }
 
   return (
-    <Form method='post' className={classes.form}>
+    <Form method='post' /*action='any-other-action-than-currently-active-route-optional'*/ className={classes.form}>
       <p>
         <label htmlFor="title">Title</label>
         <input id="title" type="text" name="title" required defaultValue={eventDto ? eventDto.title : 'test title'}/>
