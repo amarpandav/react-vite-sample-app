@@ -28,6 +28,7 @@ function EventForm({ eventDto}: Props) {
       </p>
       <p>
         <label htmlFor="date">Date</label>
+          {/*Data is not displayed + selected date from picker throws format error */}
         <input id="date" type="date" name="date" required value={eventDto ? DateUtils.formatISODate(eventDto.eventDate) : ''}/>
       </p>
       <p>
