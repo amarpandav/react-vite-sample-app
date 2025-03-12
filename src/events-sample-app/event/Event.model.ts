@@ -38,7 +38,7 @@ export class EventDto {
 
     public static toJson(title: string, eventDate: string, image: string, description: string): Record<string, string> {
         return {
-            title: title,
+            title: title ?? '',
             eventDate: eventDate,
             image: image,
             description: description

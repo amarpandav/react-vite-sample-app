@@ -46,13 +46,21 @@ export async function action({request, params}: LoaderFunctionArgs) {
         body: JSON.stringify(eventAsJson),
     });
 
-    console.log("EditEventPage.action.response: ",response.json());
+    /*
+    * calling response.json() multiple times would cause error Failed to execute 'json' on 'Response': body stream already read
+    * But we are calling  response.json() only once. No... we are returning response in case of 422 which will read response.
+    * we can't read response multiple time.
+    * */
+    //console.log("EditEventPage.action.response: ",response.json());
 
-    if (response.ok) {
-        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-        return redirect("/events-module/events");
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+
+    if(response.status == 422){
+        return response;
     } else {
         //optional error handling. mostly we will have a toaster message or a modal to show the error.
         await throwError('Editing event failed (method: EditEventPage.action).', response);
     }
+
+    return redirect("/events-module/events");
 }

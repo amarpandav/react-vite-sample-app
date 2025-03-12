@@ -46,10 +46,13 @@ npm install react@19 react-dom@19
   - error?.data?.message
   - error?.data?.stack
   - error?.status
+
 ## useSubmit()
 -  hook used to call submit function
 
-
+## useActionData()
+-  hook used to retrieve data sent from action()
+- const actionData = useActionData();
 
 # React + TypeScript + Vite
 

@@ -1,3 +1,4 @@
+/*global css file applied over all*/
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Roboto+Condensed:wght@400;700&display=swap");
 
 * {
@@ -83,6 +84,6 @@ main {
   max-width: 50rem;
   margin: auto;
   margin: 2rem auto;
-  text-align: center;
+  /*text-align: center;*/
 }
 
