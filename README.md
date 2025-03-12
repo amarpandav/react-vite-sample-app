@@ -9,6 +9,10 @@ npm install react-router-dom
 npm install react@19 react-dom@19
 
 # Examples learnt
+## useNavigate
+- const navigate = useNavigate();
+- navigate("/sample8");
+
 ## useNavigation()
 - {navigation.state === 'loading'}
 - {navigation.state === 'error'}
