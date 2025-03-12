@@ -16,7 +16,7 @@ export default function EventItem({ eventDto}: Props) {
     <article className={classes.event}>
       <img src={eventDto.image} alt={eventDto.title} />
       <h1>{eventDto.title}</h1>
-      <time>{DateUtils.formatISODate(eventDto.eventDate)}</time>
+      <time>{DateUtils.formatToSwissDate(eventDto.eventDate)}</time>
       <p>{eventDto.description}</p>
       <menu className={classes.actions}>
         <Link to="edit">Edit</Link>

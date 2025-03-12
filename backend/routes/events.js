@@ -44,8 +44,8 @@ router.post('/', async (req, res, next) => {
     errors.description = 'Invalid description.';
   }
 
-  if (!isValidDate(data.date)) {
-    errors.date = 'Invalid date.';
+  if (!isValidDate(data.eventDate)) {
+    errors.eventDate = 'Invalid date.';
   }
 
   if (!isValidImageUrl(data.image)) {
@@ -80,8 +80,8 @@ router.patch('/:id', async (req, res, next) => {
     errors.description = 'Invalid description.';
   }
 
-  if (!isValidDate(data.date)) {
-    errors.date = 'Invalid date.';
+  if (!isValidDate(data.eventDate)) {
+    errors.eventDate = 'Invalid date.';
   }
 
   if (!isValidImageUrl(data.image)) {

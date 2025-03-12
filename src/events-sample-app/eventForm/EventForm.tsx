@@ -28,8 +28,13 @@ function EventForm({ eventDto}: Props) {
       </p>
       <p>
         <label htmlFor="date">Date</label>
-          {/*Data is not displayed + selected date from picker throws format error */}
-        <input id="date" type="date" name="date" required defaultValue={eventDto ? DateUtils.formatISODate(eventDto.eventDate) : '15.05.2024'}/>
+          {/*Data is not displayed + selected date from picker throws format error
+            <input id="date" type="date" name="eventDate" required defaultValue='2005-05-05'/>
+
+            An <input type="date"> expects the date in the YYYY-MM-DD format (ISO format), but you're passing a formatted string like dd.MM.yyyy, which is not valid for the date input type.
+            <input id="date" type="date" name="eventDate" required defaultValue={eventDto ? DateUtils.formatDateToSwiss(eventDto.eventDate) : '15.05.2024'}/>
+          */}
+          <input id="date" type="date" name="eventDate" required defaultValue={eventDto ? DateUtils.formatToISODate(eventDto.eventDate): '2024-05-15'}/>
       </p>
       <p>
         <label htmlFor="description">Description</label>
