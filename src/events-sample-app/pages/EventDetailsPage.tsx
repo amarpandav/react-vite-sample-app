@@ -2,6 +2,7 @@ import {Link, LoaderFunctionArgs, /*useLoaderData,*/ useRouteLoaderData, /*usePa
 import {EventDto} from "../event/Event.model.ts";
 //import {DateUtils} from "../../utils/DateUtils.ts";
 import EventItem from "../eventItem/EventItem.tsx";
+import {throwError} from "../../components/errorPage/RouteErrorPage.tsx";
 //import {ErrorDto} from "../../components/ErrorPage/Error.tsx";
 
 /*
@@ -37,6 +38,9 @@ export async function loader({request, params}: LoaderFunctionArgs) {
     if (response.ok) {
         return response;
     } else {
+        //optional error handling. mostly we will have a toaster message or a modal to show the error.
+        await throwError('Fetching event details for event id ' + eventId + ' failed. (method: EventDetailsPage.loader).', response);
+
         //optional error handling. mostly we will have a toaster message or a modal to show the error.
         try {
             const errorDetails = await response.json();
