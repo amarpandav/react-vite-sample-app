@@ -16,17 +16,20 @@ export async function action({request, params}: LoaderFunctionArgs) {
     const data = await request.formData()
     const eventAsJson = EventDto.toJson(data.get('title'), data.get('eventDate'), data.get('image'), data.get('description'));
 
-    console.log(JSON.stringify(eventAsJson));
+    //console.log(JSON.stringify(eventAsJson));
     const response = await fetch('http://localhost:8080/events', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(eventAsJson),
+        //body: JSON.stringify(eventAsJson),
+
+        //to test invalid data so that backend throws errors and status code 422
+        body: null,
     });
 
+    console.log("NewEventPage.action.response: ",response.json());
     if (response.ok) {
-        //console.log("NewEventPage.action.response: ",response.json());
         window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
         return redirect("/events-module/events");
     } else {

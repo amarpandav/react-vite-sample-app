@@ -9,6 +9,7 @@ const {
 
 const router = express.Router();
 
+//get all
 router.get('/', async (req, res, next) => {
   try {
     const events = await getAll();
@@ -22,6 +23,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+//get with id
 router.get('/:id', async (req, res, next) => {
   try {
     const event = await get(req.params.id);
@@ -31,6 +33,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+//new event save
 router.post('/', async (req, res, next) => {
   const data = req.body;
 

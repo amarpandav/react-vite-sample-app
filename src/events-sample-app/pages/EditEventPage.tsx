@@ -33,9 +33,11 @@ export async function action({request, params}: LoaderFunctionArgs) {
     const eventId = params.eventId
 
     const data = await request.formData()
+
     const eventAsJson = EventDto.toJson(data.get('title'), data.get('eventDate'), data.get('image'), data.get('description'));
 
-    console.log(JSON.stringify(eventAsJson));
+    //console.log(JSON.stringify(eventAsJson));
+
     const response = await fetch('http://localhost:8080/events/'+eventId, {
         method: 'PATCH',
         headers: {
@@ -44,8 +46,9 @@ export async function action({request, params}: LoaderFunctionArgs) {
         body: JSON.stringify(eventAsJson),
     });
 
+    console.log("EditEventPage.action.response: ",response.json());
+
     if (response.ok) {
-        //console.log("EditEventPage.action.response: ",response.json());
         window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
         return redirect("/events-module/events");
     } else {
