@@ -57,7 +57,7 @@ async function replace(id, data) {
     throw new NotFoundError('Could not find event for id ' + id);
   }
 
-  storedData.events[index] = { ...data, id };
+  storedData.events[index] = { ...data, entityId:{uuid: storedData.events[index].entityId.uuid}, eventId:{id: storedData.events[index].eventId.id} };
 
   await writeData(storedData);
 }

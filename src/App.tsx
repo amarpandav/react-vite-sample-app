@@ -23,7 +23,7 @@ import Sample10ProductDetailsPage from "./components/sample10/Sample10ProductDet
 import EventsLayout from "./events-sample-app/eventsLayout/EventsLayout.tsx";
 import EventDetailsPage, {loader as eventDetailsLoader} from "./events-sample-app/pages/EventDetailsPage.tsx";
 import NewEventPage, {action as newEventAction} from "./events-sample-app/pages/NewEventPage.tsx";
-import EditEventPage from "./events-sample-app/pages/EditEventPage.tsx";
+import EditEventPage, {action as editEventAction} from "./events-sample-app/pages/EditEventPage.tsx";
 import EventsPage from "./events-sample-app/pages/EventsPage.tsx";
 //import {ErrorBoundary} from "./components/errorBoundary/ErrorBoundary.tsx";
 //import {convertToDate} from "./events-sample-app/utils/dateUtils.ts";
@@ -134,7 +134,7 @@ const router = createBrowserRouter([
                             },
                             //{path: ':eventId/edit', element: <EditEventPage></EditEventPage>},
                             //:eventId moved to parent route
-                            {path: 'edit', element: <EditEventPage></EditEventPage>}
+                            {path: 'edit', element: <EditEventPage></EditEventPage>, action: editEventAction}
                         ]
 
                     },

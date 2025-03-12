@@ -39,46 +39,6 @@ export async function loader({request, params}: LoaderFunctionArgs) {
         return response;
     } else {
         //optional error handling. mostly we will have a toaster message or a modal to show the error.
-        await throwError('Fetching event details for event id ' + eventId + ' failed. (method: EventDetailsPage.loader).', response);
-
-        //optional error handling. mostly we will have a toaster message or a modal to show the error.
-        try {
-            const errorDetails = await response.json();
-            console.log("error in EventDetailsPage.loader.try is: "+errorDetails);
-
-            let stack = errorDetails.message;
-            if(errorDetails.stack) {
-                stack = stack + errorDetails.stack;
-            }
-            //console.log("stack in loader is:"+stack );
-            //console.log(); if available
-            throw Response.json(
-                {message: 'Fetching event details for event id ' + eventId + ' failed.', stack: stack},
-                {status: response.status},
-            );
-        }catch (error) {
-            // If JSON parsing fails (e.g., HTML error page is returned), fall back to raw text
-            //const stack = await response.text();  // Get the raw HTML or text
-            //throw new Error(`Failed to fetch event details. Error: ${errorMessage}`);
-
-            //No idea why we get : SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
-            console.log("error in EventDetailsPage.loader.catch is: "+error);
-
-            /*
-            This is not working. in Error.tsx, everything is empty
-            const stack = response.url + " "+response.statusText + " "+error;
-            throw Response.json( new ErrorDto(response.status, 'Fetching event details for event id ' + eventId + ' failed.', stack), {status: response.status});
-                //{message: 'Fetching event details for event id ' + eventId + ' failed.', stack: stack},
-                //{status: response.status},
-                */
-
-            const stack = response.url + " "+response.statusText+ ". "+error;
-            throw Response.json(
-                {message: 'Fetching event details for event id ' + eventId + ' failed.', stack: stack},
-                {status: response.status},
-            );
-
-        }
-
+        await throwError('Viewing Event Details failed (method: EventDetailsPage.loader).', response);
     }
 }

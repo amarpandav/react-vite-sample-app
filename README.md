@@ -32,6 +32,7 @@ npm install react@19 react-dom@19
 -  const event: EventDto = EventDto.parseJson(eventJson);
 - 
 ## useParams()
+- to get the data from the URL
 - const params = useParams();
     - {params.productId}
 

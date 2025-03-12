@@ -1,6 +1,7 @@
 import EventForm from "../eventForm/EventForm.tsx";
 import {Link, LoaderFunctionArgs, useRouteLoaderData} from "react-router-dom";
 import {EventDto} from "../event/Event.model.ts";
+import {throwError} from "../../components/errorPage/RouteErrorPage.tsx";
 
 /*
 * Use case we are trying to solve:
@@ -26,43 +27,27 @@ export default function EditEventPage() {
     );
 }
 
-/*tbd
+
 export async function action({request, params}: LoaderFunctionArgs) {
+
+    const eventId = params.eventId
+
     const data = await request.formData()
     const eventAsJson = EventDto.toJson(data.get('title'), data.get('eventDate'), data.get('image'), data.get('description'));
 
     console.log(JSON.stringify(eventAsJson));
-    const response = await fetch('http://localhost:8080/events', {
-        method: 'POST',
+    const response = await fetch('http://localhost:8080/events/'+eventId, {
+        method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(eventAsJson),
     });
 
-    if(response.ok){
+    if (response.ok) {
 
-    }else {
+    } else {
         //optional error handling. mostly we will have a toaster message or a modal to show the error.
-        try {
-            const errorDetails = await response.json();
-            console.log("error in NewEventPage.action.try is: "+errorDetails);
-
-            let stack = errorDetails.message;
-            if(errorDetails.stack) {
-                stack = stack + errorDetails.stack;
-            }
-            throw Response.json(
-                {message: 'Creating new event failed.', stack: stack},
-                {status: response.status},
-            );
-        }catch (error) {
-            console.log("error in NewEventPage.action.catch is: "+error);
-            const stack = response.url + " "+response.statusText+ ". "+error;
-            throw Response.json(
-                {message: 'Creating new event failed.', stack: stack},
-                {status: response.status},
-            );
-        }
+        await throwError('Editing event failed (method: EditEventPage.action).', response);
     }
-}*/
+}

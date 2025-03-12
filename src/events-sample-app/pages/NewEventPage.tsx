@@ -26,7 +26,7 @@ export async function action({request, params}: LoaderFunctionArgs) {
     });
 
     if (response.ok) {
-
+        console.log("action.response.ok:"+JSON.stringify(response));
     } else {
         //optional error handling. mostly we will have a toaster message or a modal to show the error.
         await throwError('Creating new event failed (method: NewEventPage.action).', response);

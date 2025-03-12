@@ -67,6 +67,7 @@ router.post('/', async (req, res, next) => {
   }
 });
 
+//update
 router.patch('/:id', async (req, res, next) => {
   const data = req.body;
 
