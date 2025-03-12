@@ -22,8 +22,10 @@ import Sample10ProductPage from "./components/sample10/Sample10ProductPage.tsx";
 import Sample10ProductDetailsPage from "./components/sample10/Sample10ProductDetailsPage.tsx";
 import EventsLayout from "./events-sample-app/eventsLayout/EventsLayout.tsx";
 import EventDetailsPage, {loader as eventDetailsLoader, action as deleteEventAction} from "./events-sample-app/pages/EventDetailsPage.tsx";
-import NewEventPage, {action as newEventAction} from "./events-sample-app/pages/NewEventPage.tsx";
-import EditEventPage, {action as editEventAction} from "./events-sample-app/pages/EditEventPage.tsx";
+import NewEventPage  from "./events-sample-app/pages/NewEventPage.tsx";
+import EditEventPage from "./events-sample-app/pages/EditEventPage.tsx";
+import {action as eventFormAction} from "./events-sample-app/eventForm/EventForm.tsx";
+
 import EventsPage from "./events-sample-app/pages/EventsPage.tsx";
 //import {ErrorBoundary} from "./components/errorBoundary/ErrorBoundary.tsx";
 //import {convertToDate} from "./events-sample-app/utils/dateUtils.ts";
@@ -135,11 +137,11 @@ const router = createBrowserRouter([
                             },
                             //{path: ':eventId/edit', element: <EditEventPage></EditEventPage>},
                             //:eventId moved to parent route
-                            {path: 'edit', element: <EditEventPage></EditEventPage>, action: editEventAction}
+                            {path: 'edit', element: <EditEventPage></EditEventPage>, action: eventFormAction/*, action: editEventAction*/}
                         ]
 
                     },
-                    {path: 'new', element: <NewEventPage></NewEventPage>, action: newEventAction},
+                    {path: 'new', element: <NewEventPage></NewEventPage>, action: eventFormAction/*, action: newEventAction*/},
 
                 ]
             }

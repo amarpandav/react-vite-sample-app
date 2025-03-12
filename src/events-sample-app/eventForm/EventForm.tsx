@@ -1,17 +1,27 @@
-import {Form, useActionData, useNavigate, useNavigation} from 'react-router-dom';
+import {
+    Form,
+    HTMLFormMethod,
+    LoaderFunctionArgs,
+    redirect,
+    useActionData,
+    useNavigate,
+    useNavigation
+} from 'react-router-dom';
 
 import classes from './EventForm.module.css';
 import {EventDto} from "../event/Event.model.ts";
 import {DateUtils} from "../../utils/DateUtils.ts";
+import {throwError} from "../../components/errorPage/RouteErrorPage.tsx";
 
 //import {EventDto} from "../event/Event.model.ts";
 
 
 interface Props {
+    method: HTMLFormMethod,
     eventDto?: EventDto;
 }
 
-function EventForm({eventDto}: Props) {
+export default function EventForm({method, eventDto}: Props) {
     const navigate = useNavigate();
 
     const navigation = useNavigation();
@@ -24,7 +34,7 @@ function EventForm({eventDto}: Props) {
     }
 
     return (
-        <Form method='post' /*action='any-other-action-than-currently-active-route-optional'*/ className={classes.form}>
+        <Form method={method}/*method='post'*/ /*action='any-other-action-than-currently-active-route-optional'*/ className={classes.form}>
             {actionData && actionData.errors && <ul>
                 {Object.values(actionData.errors).map((err) => (
                     <li key={err}>{err}</li>
@@ -66,4 +76,54 @@ function EventForm({eventDto}: Props) {
     );
 }
 
-export default EventForm;
+/**
+ * New need to create 2 action methods as edit and new event api looks almost identical.
+ * @param request
+ * @param params
+ */
+export async function action({request, params}: LoaderFunctionArgs) {
+
+    const method = request.method;
+    const eventId = params.eventId
+
+    const data = await request.formData()
+
+    //works but ts error - const eventAsJson = EventDto.toJson(data.get('title'), data.get('eventDate'), data.get('image'), data.get('description'));
+    const eventAsJson = EventDto.toJson(data.get('title') as string, data.get('eventDate') as string, data.get('image') as string, data.get('description') as string);
+
+    //console.log(JSON.stringify(eventAsJson));
+
+    let url = "http://localhost:8080/events";
+    if(method === 'PATCH') {
+        url = url + '/' +eventId
+    }
+    const response = await fetch(url/*'http://localhost:8080/events/'+eventId*/, {
+        method: method/*'PATCH', 'POST'*/,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(eventAsJson),
+    });
+
+    /*
+    * calling response.json() multiple times would cause error Failed to execute 'json' on 'Response': body stream already read
+    * But we are calling  response.json() only once. No... we are returning response in case of 422 which will read response.
+    * we can't read response multiple time.
+    * */
+    //console.log("EventForm.action.response: ",response.json());
+
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+
+    if(response.status == 422){
+        return response;
+    } else if(!response.ok){
+        let operation = "New";
+        if(method === 'PATCH') {
+            operation = "Edit"
+        }
+        //optional error handling. mostly we will have a toaster message or a modal to show the error.
+        await throwError(operation+' event failed (method: EventForm.action).', response);
+    }
+
+    return redirect("/events-module/events");
+}

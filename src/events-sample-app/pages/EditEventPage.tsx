@@ -1,8 +1,6 @@
 import EventForm from "../eventForm/EventForm.tsx";
-import {Link, LoaderFunctionArgs, redirect, useRouteLoaderData} from "react-router-dom";
+import {Link, useRouteLoaderData} from "react-router-dom";
 import {EventDto} from "../event/Event.model.ts";
-import {throwError} from "../../components/errorPage/RouteErrorPage.tsx";
-
 /*
 * Use case we are trying to solve:
 * How to get data from the previous page to this page?
@@ -21,14 +19,14 @@ export default function EditEventPage() {
     return (
         <>
             <h3>Event Mgmt - Edit Event Page</h3>
-            <EventForm eventDto={eventDto}/>
+            <EventForm method="POST" eventDto={eventDto}/>
             <Link to=".." relative="path">Back to Details</Link>
         </>
     );
 }
 
 
-export async function action({request, params}: LoaderFunctionArgs) {
+/*export async function action({request, params}: LoaderFunctionArgs) {
 
     const eventId = params.eventId
 
@@ -46,11 +44,11 @@ export async function action({request, params}: LoaderFunctionArgs) {
         body: JSON.stringify(eventAsJson),
     });
 
-    /*
+
     * calling response.json() multiple times would cause error Failed to execute 'json' on 'Response': body stream already read
     * But we are calling  response.json() only once. No... we are returning response in case of 422 which will read response.
     * we can't read response multiple time.
-    * */
+
     //console.log("EditEventPage.action.response: ",response.json());
 
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -63,4 +61,4 @@ export async function action({request, params}: LoaderFunctionArgs) {
     }
 
     return redirect("/events-module/events");
-}
+}*/

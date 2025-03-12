@@ -1,18 +1,16 @@
 import EventForm from "../eventForm/EventForm.tsx";
-import {Link, LoaderFunctionArgs, redirect} from "react-router-dom";
-import {EventDto} from "../event/Event.model.ts";
-import {throwError} from "../../components/errorPage/RouteErrorPage.tsx";
-
+import {Link} from "react-router-dom";
 export default function NewEventPage() {
     return (
         <>
-            <EventForm></EventForm>
+            <EventForm method="POST"/>
             <Link to=".." relative="path">Back to Events</Link>
         </>
     );
 }
 
-export async function action({request/*, params*/}: LoaderFunctionArgs) {
+/*
+export async function action({request, params}: LoaderFunctionArgs) {
     const data = await request.formData();
 
     //works but ts error - const eventAsJson = EventDto.toJson(data.get('title'), data.get('eventDate'), data.get('image'), data.get('description'));
@@ -32,11 +30,11 @@ export async function action({request/*, params*/}: LoaderFunctionArgs) {
 
     });
 
-    /*
+
     * calling response.json() multiple times would cause error Failed to execute 'json' on 'Response': body stream already read
     * But we are calling  response.json() only once. No... we are returning response in case of 422 which will read response.
     * we can't read response multiple time.
-    * */
+
     //console.log("NewEventPage.action.response: ",response.json());
 
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -48,4 +46,4 @@ export async function action({request/*, params*/}: LoaderFunctionArgs) {
     }
 
     return redirect("/events-module/events");
-}
+}*/
