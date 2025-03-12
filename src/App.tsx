@@ -25,7 +25,7 @@ import EventDetailsPage, {loader as eventDetailsLoader} from "./events-sample-ap
 import NewEventPage from "./events-sample-app/pages/NewEventPage.tsx";
 import EditEventPage from "./events-sample-app/pages/EditEventPage.tsx";
 import EventsPage from "./events-sample-app/pages/EventsPage.tsx";
-import {ErrorBoundary} from "./components/errorBoundary/ErrorBoundary.tsx";
+//import {ErrorBoundary} from "./components/errorBoundary/ErrorBoundary.tsx";
 //import {convertToDate} from "./events-sample-app/utils/dateUtils.ts";
 
 const router = createBrowserRouter([

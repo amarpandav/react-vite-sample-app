@@ -1,4 +1,4 @@
-import {useLoaderData, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 import classes from './EventForm.module.css';
 import {EventDto} from "../event/Event.model.ts";
@@ -8,16 +8,13 @@ import {DateUtils} from "../../utils/DateUtils.ts";
 
 
 interface Props {
-    method: 'create' | 'edit';
-    eventDto: EventDto;
+    eventDto?: EventDto;
 }
-function EventForm({ method, eventDto}: Props) {
+function EventForm({ eventDto}: Props) {
   const navigate = useNavigate();
   function cancelHandler() {
     navigate('..');
   }
-
-  console.log(method);
 
   return (
     <form className={classes.form}>
@@ -35,7 +32,7 @@ function EventForm({ method, eventDto}: Props) {
       </p>
       <p>
         <label htmlFor="description">Description</label>
-        <textarea id="description" name="description" rows="5" required value={eventDto ? eventDto.description : ''}/>
+        <textarea id="description" name="description" rows={5} required value={eventDto ? eventDto.description : ''}/>
       </p>
       <div className={classes.actions}>
         <button type="button" onClick={cancelHandler}>
