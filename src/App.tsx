@@ -16,7 +16,7 @@ import RootLayout from "./home-module/layout/RootLayout.tsx";
 import AdminSystemSettings from "./admin-module/adminSysSettings/AdminSystemSettings.tsx";
 import AdminHome from "./admin-module/adminHome/AdminHome.tsx";
 import AdminLayout from "./admin-module/adminLayout/AdminLayout.tsx";
-import RouteErrorPage from "./home-module/errorPage/RouteErrorPage.tsx";
+import RouteErrorPage from "./home-module/error/RouteErrorPage.tsx";
 import Sample9Page from "./home-module/sample9/Sample9Page.tsx";
 import Sample10ProductPage from "./home-module/sample10/Sample10ProductPage.tsx";
 import Sample10ProductDetailsPage from "./home-module/sample10/Sample10ProductDetailsPage.tsx";
@@ -31,6 +31,7 @@ import {action as eventFormAction} from "./events-module/eventForm/EventForm.tsx
 
 import EventsPage from "./events-module/pages/EventsPage.tsx";
 import HomeLayout from "./home-module/layout/HomeLayout.tsx";
+import NewsLetterPage from "./home-module/newsLetter/NewsLetterPage.tsx";
 //import {ErrorBoundary} from "./components/errorBoundary/ErrorBoundary.tsx";
 //import {convertToDate} from "./events-sample-app/utils/dateUtils.ts";
 
@@ -63,10 +64,13 @@ const router = createBrowserRouter([
                     {path: 'sample9', element: <Sample9Page></Sample9Page>},
                     {path: 'sample10/', element: <Sample10ProductPage></Sample10ProductPage>},
                     {path: 'sample10/:productId', element: <Sample10ProductDetailsPage></Sample10ProductDetailsPage>},
+
                 ]
             },
-        ],
+            {path: 'newsletter', element: <NewsLetterPage></NewsLetterPage>},
+        ]
     },
+
     {
         path: '/admin-module',
         element: <RootLayout></RootLayout>,

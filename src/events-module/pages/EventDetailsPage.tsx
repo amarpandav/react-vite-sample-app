@@ -1,4 +1,5 @@
 import {
+    ActionFunctionArgs,
     Link,
     LoaderFunctionArgs,
     redirect, /*useLoaderData,*/
@@ -7,7 +8,7 @@ import {
 import {EventDto} from "../event/Event.model.ts";
 //import {DateUtils} from "../../utils/DateUtils.ts";
 import EventItem from "../eventItem/EventItem.tsx";
-import {throwError} from "../../home-module/errorPage/RouteErrorPage.tsx";
+import {throwError} from "../../home-module/error/RouteErrorPage.tsx";
 //import {ErrorDto} from "../../components/ErrorPage/Error.tsx";
 
 /*
@@ -48,7 +49,7 @@ export async function loader({request, params}: LoaderFunctionArgs) {
     }
 }
 
-export async function action({params, request}) {
+export async function action({params, request}: ActionFunctionArgs) {
     const eventId = params.eventId
     const response = await fetch('http://localhost:8080/events/' + eventId, {
         /*method: 'DELETE',*/

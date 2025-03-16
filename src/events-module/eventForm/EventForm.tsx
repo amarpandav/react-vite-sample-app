@@ -11,7 +11,7 @@ import {
 import classes from './EventForm.module.css';
 import {EventDto} from "../event/Event.model.ts";
 import {DateUtils} from "../../utils/DateUtils.ts";
-import {throwError} from "../../home-module/errorPage/RouteErrorPage.tsx";
+import {throwError} from "../../home-module/error/RouteErrorPage.tsx";
 
 //import {EventDto} from "../event/Event.model.ts";
 
