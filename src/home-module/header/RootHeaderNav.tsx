@@ -1,5 +1,6 @@
 import {NavLink} from "react-router-dom";
 import classes from './HeaderNav.module.css';
+import NewsLetterSignup from "../newsLetter/NewsLetterSignup.tsx";
 export default function RootHeaderNav() {
 
     return (
@@ -31,6 +32,10 @@ export default function RootHeaderNav() {
                         <li> <NavLink to="/newsletter" className={ ({isActive})=> isActive ? classes.active : undefined} style={{color: 'blue'}}>Newsletter</NavLink></li>
                     </ul>
                 </nav>
+                <div style = {{marginLeft: "200px"}}>
+                    <NewsLetterSignup></NewsLetterSignup>
+                </div>
+
             </header>
 
     );

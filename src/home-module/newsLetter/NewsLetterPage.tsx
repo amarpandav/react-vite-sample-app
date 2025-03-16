@@ -1,11 +1,16 @@
-import NewsLetter from "./NewsLetter.tsx";
+import NewsLetterSignup from "./NewsLetterSignup.tsx";
 
-export default function NewsLetterPage(){
+export default function NewsLetterPage() {
 
     return (
         <>
-            <NewsLetter></NewsLetter>
-            </>
+            <h2>Join our awesome newsletter!</h2>
+            {/*<div style={{float:'center'}}>*/}
+
+            <NewsLetterSignup></NewsLetterSignup>
+
+            {/*</div>*/}
+        </>
     );
 
 }
