@@ -29,8 +29,10 @@ async function loadEvents() {
         })
 }
 
-export function loader() {
-    return {events: loadEvents()};
+export async function loader() {
+    return {
+        events: loadEvents()
+    };
 }
 
 
