@@ -56,6 +56,7 @@ npm install react@19 react-dom@19
 
 ## useFetcher()
 - hook used to trigger an action without invoking route
+- use useFetcher to get load loader/action without navigating/loading the page/route to which that loader belongs
 - newsletter form is displayed on every router and if you use normal Form then its action code must be repeated everywhere, so to avoid that use useFetcher()
 - const fetcher = useFetcher();
 - 
