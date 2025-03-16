@@ -29,9 +29,12 @@ import NewEventPage from "./events-module/pages/NewEventPage.tsx";
 import EditEventPage from "./events-module/pages/EditEventPage.tsx";
 import {action as eventFormAction} from "./events-module/eventForm/EventForm.tsx";
 
-import EventsPage from "./events-module/pages/EventsPage.tsx";
+import EventsPage, {loader as eventsLoader} from "./events-module/pages/EventsPage.tsx";
 import HomeLayout from "./home-module/layout/HomeLayout.tsx";
 import NewsLetterPage, {action as newsLetterAction} from "./home-module/newsLetter/NewsLetterPage.tsx";
+import EventsPageWithSuspenseAndAwait, {
+    loader as eventsLoaderWithSuspenseAndAwait
+} from "./events-module/pages/EventsPageWithSuspenseAndAwait.tsx";
 //import {ErrorBoundary} from "./components/errorBoundary/ErrorBoundary.tsx";
 //import {convertToDate} from "./events-sample-app/utils/dateUtils.ts";
 
@@ -124,7 +127,7 @@ const router = createBrowserRouter([
                 element: <EventsLayout></EventsLayout>,
                 children: [
                     {
-                        index: true/*path: ''*/, element: <EventsPage></EventsPage>,
+                        index: true/*path: ''*/, element: <EventsPage></EventsPage>, loader: eventsLoader //option 1: outsource code to lead events inside EventsPage.
                         /* incase you want load the data before visiting EventsPage. You can also move this code into a function inside EventsPage so App.tsx file is leaner.
                         loader: async () => {
                             const response = await fetch('http://localhost:8080/events');
@@ -142,7 +145,11 @@ const router = createBrowserRouter([
                                 return events;
                             }
                         }*/
-                        //option 2: outsource code to lead events inside EventsPage. loader: eventsLoader
+                    },
+                    {
+                        path: 'events-with-suspense-await',
+                        element: <EventsPageWithSuspenseAndAwait></EventsPageWithSuspenseAndAwait>,
+                        loader: eventsLoaderWithSuspenseAndAwait
                     },
                     {
                         path: ':eventId',

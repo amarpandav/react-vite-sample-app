@@ -29,6 +29,7 @@ export default function RootHeaderNav() {
                         <li> <NavLink to="/" className={ ({isActive})=> isActive ? classes.active : undefined} style={{color: 'blue'}}>Home</NavLink></li>
                         <li> <NavLink to="/admin-module" className={ ({isActive})=> isActive ? classes.active : undefined} style={{color: 'blue'}}>Admin App</NavLink></li>
                         <li> <NavLink to="/events-module/events" className={ ({isActive})=> isActive ? classes.active : undefined} style={{color: 'pink'}}>Events App</NavLink></li>
+                        <li> <NavLink to="/events-module/events/events-with-suspense-await" className={ ({isActive})=> isActive ? classes.active : undefined} style={{color: 'pink'}}>Events App (Suspense and Await)</NavLink></li>
                         <li> <NavLink to="/newsletter" className={ ({isActive})=> isActive ? classes.active : undefined} style={{color: 'blue'}}>Newsletter</NavLink></li>
                     </ul>
                 </nav>
