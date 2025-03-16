@@ -3,34 +3,34 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'*/
 import './App.css'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import HomePage from "./HomePage.tsx";
-import Sample1Page from "./components/sample1/Sample1Page.tsx";
-import Sample2Page from "./components/sample2/Sample2Page.tsx";
-import Sample3Page from "./components/sample3/Sample3Page.tsx";
-import Sample4Page from "./components/sample4/Sample4Page.tsx";
-import Sample5Page from "./components/sample5/Sample5Page.tsx";
-import Sample6Page from "./components/sample6/Sample6Page.tsx";
-import Sample7Page from "./components/sample7/Sample7Page.tsx";
-import Sample8Page from "./components/sample8/Sample8Page.tsx";
-import RootLayout from "./components/layout/RootLayout.tsx";
-import AdminSystemSettings from "./components/admin/adminSysSettings/AdminSystemSettings.tsx";
-import AdminHome from "./components/admin/adminHome/AdminHome.tsx";
-import AdminLayout from "./components/admin/adminLayout/AdminLayout.tsx";
-import RouteErrorPage from "./components/errorPage/RouteErrorPage.tsx";
-import Sample9Page from "./components/sample9/Sample9Page.tsx";
-import Sample10ProductPage from "./components/sample10/Sample10ProductPage.tsx";
-import Sample10ProductDetailsPage from "./components/sample10/Sample10ProductDetailsPage.tsx";
-import EventsLayout from "./events-sample-app/eventsLayout/EventsLayout.tsx";
+import HomePage from "./home-module/home/HomePage.tsx";
+import Sample1Page from "./home-module/sample1/Sample1Page.tsx";
+import Sample2Page from "./home-module/sample2/Sample2Page.tsx";
+import Sample3Page from "./home-module/sample3/Sample3Page.tsx";
+import Sample4Page from "./home-module/sample4/Sample4Page.tsx";
+import Sample5Page from "./home-module/sample5/Sample5Page.tsx";
+import Sample6Page from "./home-module/sample6/Sample6Page.tsx";
+import Sample7Page from "./home-module/sample7/Sample7Page.tsx";
+import Sample8Page from "./home-module/sample8/Sample8Page.tsx";
+import RootLayout from "./home-module/layout/RootLayout.tsx";
+import AdminSystemSettings from "./admin-module/adminSysSettings/AdminSystemSettings.tsx";
+import AdminHome from "./admin-module/adminHome/AdminHome.tsx";
+import AdminLayout from "./admin-module/adminLayout/AdminLayout.tsx";
+import RouteErrorPage from "./home-module/errorPage/RouteErrorPage.tsx";
+import Sample9Page from "./home-module/sample9/Sample9Page.tsx";
+import Sample10ProductPage from "./home-module/sample10/Sample10ProductPage.tsx";
+import Sample10ProductDetailsPage from "./home-module/sample10/Sample10ProductDetailsPage.tsx";
+import EventsLayout from "./events-module/eventsLayout/EventsLayout.tsx";
 import EventDetailsPage, {
     action as deleteEventAction,
     loader as eventDetailsLoader
-} from "./events-sample-app/pages/EventDetailsPage.tsx";
-import NewEventPage from "./events-sample-app/pages/NewEventPage.tsx";
-import EditEventPage from "./events-sample-app/pages/EditEventPage.tsx";
-import {action as eventFormAction} from "./events-sample-app/eventForm/EventForm.tsx";
+} from "./events-module/pages/EventDetailsPage.tsx";
+import NewEventPage from "./events-module/pages/NewEventPage.tsx";
+import EditEventPage from "./events-module/pages/EditEventPage.tsx";
+import {action as eventFormAction} from "./events-module/eventForm/EventForm.tsx";
 
-import EventsPage from "./events-sample-app/pages/EventsPage.tsx";
-import HomeLayout from "./components/layout/HomeLayout.tsx";
+import EventsPage from "./events-module/pages/EventsPage.tsx";
+import HomeLayout from "./home-module/layout/HomeLayout.tsx";
 //import {ErrorBoundary} from "./components/errorBoundary/ErrorBoundary.tsx";
 //import {convertToDate} from "./events-sample-app/utils/dateUtils.ts";
 
@@ -43,7 +43,7 @@ const router = createBrowserRouter([
         errorElement: <RouteErrorPage></RouteErrorPage>,
         children: [
             {
-                path: '/',/*other alternative: To turn any route into Index route. {index: true, element: <HomePage></HomePage>} */
+                path: '',/*other alternative: To turn any route into Index route. {index: true, element: <HomePage></HomePage>} */
                 element: <HomeLayout></HomeLayout>,
                 children: [
                     //option 1: Absolute path
@@ -73,7 +73,7 @@ const router = createBrowserRouter([
         errorElement: <RouteErrorPage></RouteErrorPage>,
         children: [
             {
-                path: '/',
+                path: '',
                 element: <AdminLayout></AdminLayout>,
                 children: [
                     /*

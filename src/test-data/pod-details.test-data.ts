@@ -1,6 +1,6 @@
 //test data for cpt_pod
 
-import {PodMemberRole} from "../components/pod/pom-member-role.enum.ts";
+import {PodMemberRole} from "../home-module/pod/pom-member-role.enum.ts";
 
 //how to use:
 // protected readonly podDetails: PodDetailsDto[] = POD_DETAILS_TEST_DATA;
