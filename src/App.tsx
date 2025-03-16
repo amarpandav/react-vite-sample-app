@@ -31,7 +31,7 @@ import {action as eventFormAction} from "./events-module/eventForm/EventForm.tsx
 
 import EventsPage from "./events-module/pages/EventsPage.tsx";
 import HomeLayout from "./home-module/layout/HomeLayout.tsx";
-import NewsLetterPage from "./home-module/newsLetter/NewsLetterPage.tsx";
+import NewsLetterPage, {action as newsLetterAction} from "./home-module/newsLetter/NewsLetterPage.tsx";
 //import {ErrorBoundary} from "./components/errorBoundary/ErrorBoundary.tsx";
 //import {convertToDate} from "./events-sample-app/utils/dateUtils.ts";
 
@@ -67,7 +67,7 @@ const router = createBrowserRouter([
 
                 ]
             },
-            {path: 'newsletter', element: <NewsLetterPage></NewsLetterPage>},
+            {path: 'newsletter', element: <NewsLetterPage></NewsLetterPage>, action: newsLetterAction},
         ]
     },
 

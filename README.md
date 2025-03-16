@@ -41,19 +41,24 @@ npm install react@19 react-dom@19
     - {params.productId}
 
 ## useRouteError()
--  hook is used in React Router to retrieve error details that were thrown inside a route's loader or during rendering.
+- hook is used in React Router to retrieve error details that were thrown inside a route's loader or during rendering.
 - const error = useRouteError() as {data: {message?: string; stack?: string}; status?: number};
   - error?.data?.message
   - error?.data?.stack
   - error?.status
 
 ## useSubmit()
--  hook used to call submit function
+- hook used to call submit function
 
 ## useActionData()
--  hook used to retrieve data sent from action()
+- hook used to retrieve data sent from action()
 - const actionData = useActionData();
 
+## useFetcher()
+- hook used to trigger an action without invoking route
+- newsletter form is displayed on every router and if you use normal Form then its action code must be repeated everywhere, so to avoid that use useFetcher()
+- const fetcher = useFetcher();
+- 
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
