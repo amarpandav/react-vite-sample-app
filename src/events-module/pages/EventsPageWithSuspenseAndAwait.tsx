@@ -33,6 +33,14 @@ export async function loader() {
     return {
         events: loadEvents()
     };
+
+    //const id = prams.eventId;
+    //You can also use await here. This means wait for loadEvents to finish loading routing to this page
+    //whereas loadEvents() will be loaded after moving to this page.
+    /*return {
+        // event: await loadEvent(id),
+        events:   loadEvents()
+    };*/
 }
 
 
