@@ -5,7 +5,7 @@ h1 {
     color: #3f3b00;
 }
 
-#game-container {
+.game-container {
     max-width: 45rem;
     margin: 3rem auto;
     padding: 2rem;
@@ -15,7 +15,7 @@ h1 {
     position: relative;
 }
 
-#players {
+.players {
     list-style: none;
     padding: 0;
     margin: 1rem 0;
@@ -25,24 +25,24 @@ h1 {
     gap: 2rem;
 }
 
-#players li {
+.players li {
     display: flex;
     align-items: center;
     width: 50%;
     border: 2px solid transparent;
 }
 
-#players.highlight-player li.active {
+.players.highlight-player li.active {
     border-color: #f6e35a;
     animation: pulse 2s infinite ease-in-out;
 }
 
-#players.highlight-player li.active .player-name,
-#players.highlight-player li.active .player-symbol {
+.players.highlight-player li.active .player-name,
+.players.highlight-player li.active .player-symbol {
     color: #f6e35a;
 }
 
-#players button {
+.players button {
     width: 3rem;
     border: none;
     background: none;
@@ -54,7 +54,7 @@ h1 {
     text-align: center;
 }
 
-#players button:hover {
+.players button:hover {
     color: #f8ca31;
 }
 
@@ -102,11 +102,11 @@ ol {
     padding: 0;
 }
 
-#pre-game {
+.pre-game {
     text-align: center;
 }
 
-#pre-game button {
+.pre-game button {
     cursor: pointer;
     background: none;
     color: #f8c031;
@@ -117,7 +117,7 @@ ol {
     animation: pulse-text-size 2s infinite ease-out;
 }
 
-#game-board {
+.game-board {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -127,7 +127,7 @@ ol {
     flex-direction: column;
 }
 
-#game-board ol {
+.game-board ol {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -136,7 +136,7 @@ ol {
     padding: 0;
 }
 
-#game-board button {
+.game-board button {
     width: 8rem;
     height: 8rem;
     border: none;
@@ -148,7 +148,7 @@ ol {
     padding: 1rem;
 }
 
-#game-over {
+.game-over {
     position: absolute;
     top: 0;
     left: 0;
@@ -162,7 +162,7 @@ ol {
     animation: pop-in 0.5s cubic-bezier(0.68, -0.55, 0.65, 0.52) forwards;
 }
 
-#game-over h2 {
+.game-over h2 {
     font-family: 'Caprasimo', cursive;
     font-size: 4rem;
     text-align: center;
@@ -170,13 +170,13 @@ ol {
     margin: 0;
 }
 
-#game-over p {
+.game-over p {
     font-size: 2rem;
     text-align: center;
     color: #e1dec7;
 }
 
-#game-over button {
+.game-over button {
     display: block;
     margin: 0 auto;
     font-size: 1.5rem;
@@ -190,7 +190,7 @@ ol {
     box-shadow: 0 0 8px rgba(255, 187, 0, 0.4);
 }
 
-#game-over button:hover {
+.game-over button:hover {
     background: #fcd256;
     color: #3f3b00;
     transform: scale(1.1);
@@ -217,24 +217,24 @@ ol {
     color: white;
 }
 
-#game-hints {
+.game-hints {
     text-align: center;
     color: #46432f;
 }
 
-#game-hints h2 {
+.game-hints h2 {
     font-family: 'Caprasimo', cursive;
     font-size: 2rem;
     margin: 0;
 }
 
-#game-hints ul {
+.game-hints ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-#game-hints button {
+.game-hints button {
     cursor: pointer;
     border: none;
     background: transparent;
