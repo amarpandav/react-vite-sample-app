@@ -4,12 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev-not-working": "react-scripts start",
+    "dev-not-working2": "react-scripts start",
     "dev-not-working": "npm run dev",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build-aws-deploy-PROD": "tsc -b && vite build && aws s3 sync dist s3://react-sample-app.ch --delete"
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
