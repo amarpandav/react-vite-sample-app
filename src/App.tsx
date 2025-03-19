@@ -37,6 +37,8 @@ import EventsPageWithSuspenseAndAwait, {
 } from "./events-module/pages/EventsPageWithSuspenseAndAwait.tsx";
 import Sample11Page from "./home-module/sample11/Sample11Page.tsx";
 import {lazy, Suspense} from "react";
+import TTTLayout from "./tic-tac-toe-module/components/tttLayout/TTTLayout.tsx";
+import TTTPage from "./tic-tac-toe-module/pages/TTTPage.tsx";
 //import Sample12Page, {loader as sample12Loader} from "./home-module/sample12/Sample12Page.tsx";
 //import {ErrorBoundary} from "./components/errorBoundary/ErrorBoundary.tsx";
 //import {convertToDate} from "./events-sample-app/utils/dateUtils.ts";
@@ -85,7 +87,26 @@ const router = createBrowserRouter([
             {path: 'newsletter', element: <NewsLetterPage></NewsLetterPage>, action: newsLetterAction},
         ]
     },
+    {
+        path: '/tic-tac-toe-module',
+        element: <RootLayout></RootLayout>,
+        errorElement: <RouteErrorPage></RouteErrorPage>,
+        children: [
+            {
+                path: '',
+                element: <TTTLayout></TTTLayout>,
+                children: [
+                    /*
+            //option 1: Absolute path
+            {path: '/admin/home', element: <AdminHome></AdminHome>},
+            {path: '/admin/systemSettings', element: <SystemSettings></SystemSettings>}*/
 
+                    /*option 2:Relative path to /admin*/
+                    {index: true, element: <TTTPage></TTTPage>}
+                ]
+            }
+        ]
+    },
     {
         path: '/admin-module',
         element: <RootLayout></RootLayout>,
