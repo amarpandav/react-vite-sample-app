@@ -1,5 +1,4 @@
 import {Outlet, useNavigation} from "react-router-dom";
-import TTTHeaderNav from "../tttHeader/TTTHeaderNav.tsx";
 
 export default function TTTLayout() {
     // useNavigation is a hook that returns the current navigation state
@@ -7,8 +6,6 @@ export default function TTTLayout() {
 
     return (
         <>
-            <h2>TTT App</h2>
-            <TTTHeaderNav></TTTHeaderNav>
             <main>
                 {
                     //this will only work when we are loading data in App.tsx using loader()
