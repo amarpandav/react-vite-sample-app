@@ -35,6 +35,7 @@ import NewsLetterPage, {action as newsLetterAction} from "./home-module/newsLett
 import EventsPageWithSuspenseAndAwait, {
     loader as eventsLoaderWithSuspenseAndAwait
 } from "./events-module/pages/EventsPageWithSuspenseAndAwait.tsx";
+import Sample11Page from "./home-module/sample11/Sample11Page.tsx";
 //import {ErrorBoundary} from "./components/errorBoundary/ErrorBoundary.tsx";
 //import {convertToDate} from "./events-sample-app/utils/dateUtils.ts";
 
@@ -67,6 +68,7 @@ const router = createBrowserRouter([
                     {path: 'sample9', element: <Sample9Page></Sample9Page>},
                     {path: 'sample10/', element: <Sample10ProductPage></Sample10ProductPage>},
                     {path: 'sample10/:productId', element: <Sample10ProductDetailsPage></Sample10ProductDetailsPage>},
+                    {path: 'sample11/', element: <Sample11Page></Sample11Page>},
 
                 ]
             },

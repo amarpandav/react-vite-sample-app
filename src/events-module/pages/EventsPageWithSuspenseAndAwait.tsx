@@ -16,6 +16,20 @@ export default function EventsPageWithSuspenseAndAwait() {
 }
 
 async function loadEvents() {
+
+    //await and then are not same, slight difference (see sample 11).
+    //await is preferred
+    /*
+    * Await:
+    * await pauses execution until the promise resolves.
+    * It makes asynchronous code look synchronous, improving readability.
+    * It can only be used inside an async function.
+    *
+    * .then():
+    * .then() is a method on promises that allows chaining.
+    *  It does not pause execution but schedules the next step when the previous promise resolves.
+    *  Works in non-async functions.
+    * */
     return fetch('http://localhost:8080/events')
         .then((response: Response) => {
             if (!response.ok) {
