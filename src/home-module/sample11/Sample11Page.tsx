@@ -50,6 +50,7 @@ export default function Sample11Page() {
         <>
 
         {getData1()}
+            {getData2()}
 
 
             <section>
