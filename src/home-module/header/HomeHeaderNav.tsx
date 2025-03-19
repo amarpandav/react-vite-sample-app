@@ -41,6 +41,7 @@ export default function HomeHeaderNav() {
                         <li><NavLink to="/sample9" className={ ({isActive})=> isActive ? classes.active : undefined}>Sample 9: Navigate Programmatically</NavLink></li>
                         <li><NavLink to="/sample10/" className={ ({isActive})=> isActive ? classes.active : undefined}>Sample 10: Dynamic Routing - Product Page</NavLink></li>
                         <li><NavLink to="/sample11/" className={ ({isActive})=> isActive ? classes.active : undefined}>Sample 11: async + await vs .then()</NavLink></li>
+                        <li><NavLink to="/sample12/" className={ ({isActive})=> isActive ? classes.active : undefined}>Sample 12: Lazy loading pages</NavLink></li>
 
                     </ul>
                 </nav>

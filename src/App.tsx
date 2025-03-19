@@ -36,8 +36,12 @@ import EventsPageWithSuspenseAndAwait, {
     loader as eventsLoaderWithSuspenseAndAwait
 } from "./events-module/pages/EventsPageWithSuspenseAndAwait.tsx";
 import Sample11Page from "./home-module/sample11/Sample11Page.tsx";
+import {lazy, Suspense} from "react";
+//import Sample12Page, {loader as sample12Loader} from "./home-module/sample12/Sample12Page.tsx";
 //import {ErrorBoundary} from "./components/errorBoundary/ErrorBoundary.tsx";
 //import {convertToDate} from "./events-sample-app/utils/dateUtils.ts";
+
+const Sample12Page = lazy(() => import('./home-module/sample12/Sample12Page'));
 
 const router = createBrowserRouter([
 
@@ -69,6 +73,12 @@ const router = createBrowserRouter([
                     {path: 'sample10/', element: <Sample10ProductPage></Sample10ProductPage>},
                     {path: 'sample10/:productId', element: <Sample10ProductDetailsPage></Sample10ProductDetailsPage>},
                     {path: 'sample11/', element: <Sample11Page></Sample11Page>},
+                    {
+                        /*path: 'sample12/', element: <Sample12Page></Sample12Page>, loader: sample12Loader*/
+                        path: 'sample12/',
+                        element: <Suspense fallback={<p>Loading Sample12Page...</p>}><Sample12Page></Sample12Page></Suspense>,
+                        loader: (loaderFunctionArgs)=> import('./home-module/sample12/Sample12Page').then( module => module.loader(loaderFunctionArgs))
+                    },
 
                 ]
             },
