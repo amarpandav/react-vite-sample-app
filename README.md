@@ -3,7 +3,10 @@ npm run dev: react
 npm start: backend
 
 # Routing, install package
-npm install react-router-dom
+- npm install react-router-dom
+- npm install react-scripts --save 
+  - without this package.json > react-scripts start > won't work
+    - got error -> because The error you're seeing is related to dependency conflicts between the TypeScript versions required by your project and those required by react-scripts. Specifically, react-scripts requires TypeScript version ^3.2.1 || ^4, but your project is using TypeScript 5.6.3, which causes a conflict.
 
 # Upgrade React to 19
 npm install react@19 react-dom@19
