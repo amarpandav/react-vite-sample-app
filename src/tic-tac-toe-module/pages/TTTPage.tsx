@@ -19,7 +19,7 @@ export default function TTTPage() {
 
             <div className={classes.amarContainer}>
                 <div>Amar's playground (we need 3x4 grid. we can start with 3 rows then add 4 columns)</div>
-                <ol className={classes.amarBoardBoard}>
+                <ol className={classes.amarBoardGame}>
                     <li>
                         <ol>
                             <li>col1</li>

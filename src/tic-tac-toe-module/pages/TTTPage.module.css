@@ -309,14 +309,14 @@ ol {
 }
 
 .amar-container {
-    /*display: flex;*/
+    /*display: flex; if this is also flex then amar-board-game continue on same row*/
     background: #7cc8ff;
     border-radius: 5px;
     box-shadow: 0 0 20px red;
     margin: 30px;
 }
 
-.amar-board-board {
+.amar-board-game {
     display: flex;
     flex-direction: row; /*single row. when its 'column' meaning single column*/
     justify-content: center;
