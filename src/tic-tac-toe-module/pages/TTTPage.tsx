@@ -5,16 +5,20 @@ import GameBoard from "../components/GameBoard.tsx";
 
 export default function TTTPage() {
 
+    function handleSelectSquare(selectedPlayerSymbol: string) {
+        window.alert(selectedPlayerSymbol);
+    }
+
     return (
         <>
             <div id="game-container" className={classes.gameContainer}>
                 <ol id="players" className={classes.players}>
                     <Player initialPlayerName="Rian" playerSymbol="X"/>
-                    <Player initialPlayerName="Amar" playerSymbol="0"/>
+                    <Player initialPlayerName="Amar" playerSymbol="O"/>
 
                     <PlayerTemp />
                 </ol>
-               <GameBoard />
+               <GameBoard callback={handleSelectSquare}/>
             </div>
 
             <div className={classes.amarContainer}>

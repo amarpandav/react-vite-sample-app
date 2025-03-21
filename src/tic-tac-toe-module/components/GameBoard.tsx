@@ -1,7 +1,10 @@
 import classes from "../pages/TTTPage.module.css";
 import {useState} from "react";
 
-export default function GameBoard() {
+interface Props {
+    callback: React.RefCallback<string>;
+}
+export default function GameBoard( {callback}: Props) {
 
     const initialGameBoard: (null | string)[][] = [
         [null, null, null],
@@ -13,11 +16,13 @@ export default function GameBoard() {
 
 
     function handleSelectSquare(rowIndex: number, colIndex: number) {
-        setGameBoard( (prevGameBoard) => {
-            const newGameBoard = [...prevGameBoard].map( (innerArray) => [...innerArray]);
+        setGameBoard( (currentGameBoard) => {
+            const newGameBoard = [...currentGameBoard].map( (innerArray) => [...innerArray]);
             newGameBoard[rowIndex][colIndex] = 'X';
             return newGameBoard;
         });
+
+        callback('O');
     }
 
     return (
