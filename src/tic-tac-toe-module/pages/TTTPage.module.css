@@ -307,3 +307,18 @@ ol {
         transform: scale(1);
     }
 }
+
+.amar-container {
+    /*display: flex;*/
+    background: #7cc8ff;
+    border-radius: 5px;
+    box-shadow: 0 0 20px red;
+    margin: 30px;
+}
+
+.amar-board-board {
+    display: flex;
+    flex-direction: row; /*single row. when its 'column' meaning single column*/
+    justify-content: center;
+    gap: 20px
+}

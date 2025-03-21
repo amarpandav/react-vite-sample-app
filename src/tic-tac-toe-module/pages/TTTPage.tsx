@@ -6,7 +6,7 @@ import GameBoard from "../components/GameBoard.tsx";
 export default function TTTPage() {
 
     return (
-        <main>
+        <>
             <div id="game-container" className={classes.gameContainer}>
                 <ol id="players" className={classes.players}>
                     <Player initialPlayerName="Rian" playerSymbol="X"/>
@@ -16,7 +16,34 @@ export default function TTTPage() {
                 </ol>
                <GameBoard />
             </div>
-        </main>
+
+            <div className={classes.amarContainer}>
+                <div>Amar's playground (we need 3x4 grid. we can start with 3 rows then add 4 columns)</div>
+                <ol className={classes.amarBoardBoard}>
+                    <li>
+                        <ol>
+                            <li>col1</li>
+                            <li>col1</li>
+                            <li>col1</li>
+                        </ol>
+                    </li>
+                    <li>
+                        <ol>
+                            <li>col2</li>
+                            <li>col2</li>
+                            <li>col2</li>
+                        </ol>
+                    </li>
+                    <li>
+                        <ol>
+                            <li>col3</li>
+                            <li>col3</li>
+                            <li>col3</li>
+                        </ol>
+                    </li>
+                </ol>
+            </div>
+        </>
 
     );
 }
