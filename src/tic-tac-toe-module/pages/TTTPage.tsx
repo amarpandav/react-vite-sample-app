@@ -1,6 +1,7 @@
 import Player from "../components/Player.tsx";
 import classes from "./TTTPage.module.css";
 import PlayerTemp from "../components/PlayerTemp.tsx";
+import GameBoard from "../components/GameBoard.tsx";
 
 export default function TTTPage() {
 
@@ -13,7 +14,7 @@ export default function TTTPage() {
 
                     <PlayerTemp />
                 </ol>
-                GAME BOARD
+               <GameBoard />
             </div>
         </main>
 

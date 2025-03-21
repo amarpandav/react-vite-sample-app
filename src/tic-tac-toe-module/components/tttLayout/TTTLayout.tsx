@@ -6,13 +6,13 @@ export default function TTTLayout() {
 
     return (
         <>
-            <main>
+            {/*<main>: no need as its coming from RootLayout*/}
                 {
                     //this will only work when we are loading data in App.tsx using loader()
                     navigation.state === 'loading' ? <p>Loading in TTT game...</p> : null
                 }
                 <Outlet></Outlet>
-            </main>
+            {/*</main>*/}
 
 
         </>

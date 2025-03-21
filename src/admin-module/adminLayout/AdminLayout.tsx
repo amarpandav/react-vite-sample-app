@@ -9,9 +9,9 @@ export default function AdminLayout() {
 
             <AdminHeaderNav></AdminHeaderNav>
 
-            <main>
+            {/*<main>: no need as its coming from RootLayout*/}
                 <Outlet></Outlet>
-            </main>
+            {/*</main>*/}
 
 
         </>
