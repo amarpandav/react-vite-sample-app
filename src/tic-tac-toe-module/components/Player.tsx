@@ -4,9 +4,10 @@ import {useState} from "react";
 interface Props {
     initialPlayerName: string;
     playerSymbol: string;
+    isActive: boolean
 }
 
-export default function Player({initialPlayerName, playerSymbol}: Props) {
+export default function Player({initialPlayerName, playerSymbol, isActive}: Props) {
 
     const [playerName, setPlayerName] = useState(initialPlayerName);
 
@@ -30,7 +31,7 @@ export default function Player({initialPlayerName, playerSymbol}: Props) {
         playerNameElement = <input id="name" name="name" type="text"  className={classes.playerName} required value={playerName} onChange={handlePlayerNameChange}/>
     }
     return (
-       <li>
+       <li className={isActive ? classes.active : undefined}>
            <span className={classes.player}>
                {playerNameElement}
                <span className={classes.playerSymbol}>{playerSymbol}</span>

@@ -2,9 +2,11 @@ import classes from "../pages/TTTPage.module.css";
 import {useState} from "react";
 
 interface Props {
-    callback: React.RefCallback<string>;
+    //callback: React.RefCallback<string>; no need to return activePlayerSymbol as its actually coming from TTTPage itself
+    callback:  () => void;
+    activePlayerSymbol: string;
 }
-export default function GameBoard( {callback}: Props) {
+export default function GameBoard( {callback, activePlayerSymbol}: Props) {
 
     const initialGameBoard: (null | string)[][] = [
         [null, null, null],
@@ -18,11 +20,11 @@ export default function GameBoard( {callback}: Props) {
     function handleSelectSquare(rowIndex: number, colIndex: number) {
         setGameBoard( (currentGameBoard) => {
             const newGameBoard = [...currentGameBoard].map( (innerArray) => [...innerArray]);
-            newGameBoard[rowIndex][colIndex] = 'X';
+            newGameBoard[rowIndex][colIndex] = activePlayerSymbol;
             return newGameBoard;
         });
 
-        callback('O');
+        callback();
     }
 
     return (
