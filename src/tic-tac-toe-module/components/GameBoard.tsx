@@ -58,7 +58,8 @@ export default function GameBoard( {callback/*, activePlayerSymbol*/, turns}: Pr
                         {
                             row.map( (col, colIndex) => (
                                 <li key={colIndex}>
-                                    <button onClick={ ()=> callback(rowIndex, colIndex)/*handleSelectSquare(rowIndex, colIndex)*/}>{col}</button>
+                                    {/*col is player symbol, remember??*/}
+                                    <button disabled={col != undefined}/*disabled={gameBoard[rowIndex][colIndex] != undefined}*/  onClick={ ()=> callback(rowIndex, colIndex)/*handleSelectSquare(rowIndex, colIndex)*/}>{col}</button>
                                     {/*col is player sombol*/}
                                 </li>
                             ))
