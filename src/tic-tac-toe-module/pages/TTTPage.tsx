@@ -2,16 +2,49 @@ import Player from "../components/Player.tsx";
 import classes from "./TTTPage.module.css";
 //import PlayerTemp from "../components/PlayerTemp.tsx";
 import GameBoard from "../components/GameBoard.tsx";
-import {useState} from "react";
+import {useMemo, useState} from "react";
+import Log from "../components/Log.tsx";
+import {SquareDto, TurnDto} from "./TurnDto.ts";
 
 export default function TTTPage() {
 
-    const [activePlayerSymbol, setActivePlayerSymbol] = useState('X');
+    const [turns, setTurns] = useState<TurnDto[]>([]);
 
-    function toggleActivePlayer() {
-        //toggle the active player symbol
-        setActivePlayerSymbol( (activePlayerSym) => activePlayerSym == 'X' ? 'O' : 'X');
+    //const [activePlayerSymbol, setActivePlayerSymbol] = useState('X'); no need to store activePlayerSymbol, recalculating it using useMemo.turns
+    const activePlayerSymbol = useMemo( () => {
+        if (turns.length === 0) {
+            return 'X';
+        }
+        return turns[0].activePlayerSymbol === 'X' ? 'O' : 'X';
+    }, [turns]);
 
+
+    function handleSelectSquare(rowIndex: number, colIndex: number) {
+        //step 1. toggle the active player symbol
+        //setActivePlayerSymbol((activePlayerSym) => activePlayerSym == 'X' ? 'O' : 'X');
+
+        //step 2. update the game board (i.e. turns)
+        //Don't merge states. Always replace them.
+        //States are immutable, so we can't merge them. We can only replace them.
+        //setTurns( (prevTunrs/*: {activePlayerSymbol: string, square: {rowIndex: number, colIndex: number}}[]*/) => {
+        setTurns((prevTunrs: TurnDto[]) => {
+
+            //activePlayerSymbol would have current active player however if we use that then we are merging two states here.
+            //We know react is hacky, it will batch the state updates and then apply them. So, we can't rely on the activePlayerSymbol.
+            //Hence redo the logic to get the active player symbol
+            /*no need to duplicate the logic: instead use useMemo.
+            let activePlayerSymbol2 = 'X';
+
+            if (prevTunrs.length > 0 && prevTunrs[0].activePlayerSymbol === 'X') {
+                activePlayerSymbol2 = 'O'
+            }*/
+
+            //const updatedTurns = [{activePlayerSymbol:activePlayerSymbol2, square: {rowIndex: rowIndex, colIndex: colIndex}},...turns];
+            //const turnDto = new TurnDto(activePlayerSymbol2, new SquareDto(rowIndex, colIndex));
+            const turnDto = new TurnDto(activePlayerSymbol, new SquareDto(rowIndex, colIndex));
+            const updatedTurns = [turnDto, ...turns];
+            return updatedTurns;
+        })
         //window.alert(activePlayerSymbol);
     }
 
@@ -24,8 +57,9 @@ export default function TTTPage() {
 
                     {/*<PlayerTemp />*/}
                 </ol>
-               <GameBoard callback={toggleActivePlayer} activePlayerSymbol={activePlayerSymbol}/>
+                <GameBoard callback={handleSelectSquare} turns={turns}/>
             </div>
+            <Log turns={turns}></Log>
 
             {/*<div className={classes.amarContainer}>
                 <div>Amar's playground (we need 3x4 grid. we can start with 3 rows then add 4 columns)</div>

@@ -62,7 +62,11 @@ npm install react@19 react-dom@19
 - use useFetcher to get load loader/action without navigating/loading the page/route to which that loader belongs
 - newsletter form is displayed on every router and if you use normal Form then its action code must be repeated everywhere, so to avoid that use useFetcher()
 - const fetcher = useFetcher();
-- 
+
+## useMemo()
+- useMemo is a React hook that memoizes the result of a function. It ensures that a calculation or computation is only re-executed when its dependencies (values that are used in the calculation) have changed. This can help optimize performance by preventing unnecessary re-calculations on every render.
+- Essentially, useMemo remembers the result of the function and reuses it unless the dependencies change.
+- const memoizedValue = useMemo(() => {...logic referring a and b}}, [a, b]);
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
