@@ -2,13 +2,19 @@ import Player from "../components/Player.tsx";
 import classes from "./TTTPage.module.css";
 //import PlayerTemp from "../components/PlayerTemp.tsx";
 import GameBoard from "../components/GameBoard.tsx";
-import {/*useMemo, */useState} from "react";
+import {useState} from "react";
 import Log from "../components/Log.tsx";
 import {SquareDto, TurnDto} from "./TurnDto.ts";
 
+const gameBoard: (null | string)[][] = [
+    [null, null, null],
+    [null, null, null],
+    [null, null, null],
+];
 export default function TTTPage() {
 
     const [turns, setTurns] = useState<TurnDto[]>([]);
+    const [winner, setWinner] = useState<string>();
 
     //const [activePlayerSymbol, setActivePlayerSymbol] = useState('X'); no need to store activePlayerSymbol, recalculating it using useMemo.turns
     //Option 1: use useMemo to calculate activePlayerSymbol
@@ -28,7 +34,71 @@ export default function TTTPage() {
         return activePlayerSymbol;
     }
 
+    /*const calculateIfWeHaveAWinner = () => {
+        //iterate over the game board and check if there is a winner
+        turns.forEach( (turn: TurnDto) => {
+            turn.
+        })
+    }*/
+
+    const calculateIfWeHaveAWinner = () => {
+        let square1;
+        let square2;
+        let square3;
+
+        //step 1: check horizontal and vertical winning combinations
+        ['X', 'O'].forEach( (playerSymbol: string) => {
+            if (winner) return;
+            [0, 1, 2].forEach( (index: number) => {
+                if (winner) return;
+                //row wise comparison
+                square1 = gameBoard[index][0];
+                square2 = gameBoard[index][1];
+                square3 = gameBoard[index][2];
+                if(playerSymbol === square1 && playerSymbol === square2 && playerSymbol === square3){
+                    setWinner(playerSymbol);
+                    return;  // Exit the current loop
+                }
+
+                //col wise comparison
+                square1 = gameBoard[0][index];
+                square2 = gameBoard[1][index];
+                square3 = gameBoard[2][index];
+                if(playerSymbol === square1 && playerSymbol === square2 && playerSymbol === square3){
+                    setWinner(playerSymbol);
+                    return;  // Exit the current loop
+                }
+            });
+        });
+
+        //step 2: check diagonal winning combinations
+        ['X', 'O'].forEach( (playerSymbol: string) => {
+            if (winner) return;
+            square1 = gameBoard[0][0];
+            square2 = gameBoard[1][1];
+            square3 = gameBoard[0][2];
+            if(playerSymbol === square1 && playerSymbol === square2 && playerSymbol === square3){
+                setWinner(playerSymbol);
+                return;  // Exit the current loop
+            }
+
+            square1 = gameBoard[0][2];
+            square2 = gameBoard[1][1];
+            square3 = gameBoard[2][0];
+            if(playerSymbol === square1 && playerSymbol === square2 && playerSymbol === square3){
+                setWinner(playerSymbol);
+                return;  // Exit the current loop
+            }
+        });
+
+
+
+        console.log("winner is: "+ winner);
+
+    }
+
     function handleSelectSquare(rowIndex: number, colIndex: number) {
+        console.log(gameBoard);
         //step 1. toggle the active player symbol
         //setActivePlayerSymbol((activePlayerSym) => activePlayerSym == 'X' ? 'O' : 'X');
 
@@ -36,8 +106,8 @@ export default function TTTPage() {
         //Don't merge states. Always replace them.
         //States are immutable, so we can't merge them. We can only replace them.
         //setTurns( (prevTunrs/*: {activePlayerSymbol: string, square: {rowIndex: number, colIndex: number}}[]*/) => {
-        setTurns((prevTunrs: TurnDto[]) => {
-            const activePlayerSymbol = deriveActivePlayerSymbol(prevTunrs);
+        setTurns((prevTurns: TurnDto[]) => {
+            const activePlayerSymbol = deriveActivePlayerSymbol(prevTurns);
             //activePlayerSymbol would have current active player however if we use that then we are merging two states here.
             //We know react is hacky, it will batch the state updates and then apply them. So, we can't rely on the activePlayerSymbol.
             //Hence redo the logic to get the active player symbol
@@ -55,6 +125,12 @@ export default function TTTPage() {
             return updatedTurns;
         })
         //window.alert(activePlayerSymbol);
+
+        //Step 3: Update the game board based on the turns
+        gameBoard[rowIndex][colIndex] = deriveActivePlayerSymbol(turns);
+
+        calculateIfWeHaveAWinner();
+
     }
 
     return (
@@ -66,11 +142,13 @@ export default function TTTPage() {
                     <Player initialPlayerName="Amar" playerSymbol="O" isActive={activePlayerSymbol === 'O'}/>
                     */}
 
-                    <Player initialPlayerName="Rian" playerSymbol="X" isActive={deriveActivePlayerSymbol(turns) === 'X'}/>
-                    <Player initialPlayerName="Amar" playerSymbol="O" isActive={deriveActivePlayerSymbol(turns) === 'O'}/>
+                    <Player initialPlayerName="Rian" playerSymbol="X"
+                            isActive={deriveActivePlayerSymbol(turns) === 'X'}/>
+                    <Player initialPlayerName="Amar" playerSymbol="O"
+                            isActive={deriveActivePlayerSymbol(turns) === 'O'}/>
                     {/*<PlayerTemp />*/}
                 </ol>
-                <GameBoard callback={handleSelectSquare} turns={turns}/>
+                <GameBoard callback={handleSelectSquare} gameBoard={gameBoard} winner={winner}/>
             </div>
             <Log turns={turns}></Log>
 

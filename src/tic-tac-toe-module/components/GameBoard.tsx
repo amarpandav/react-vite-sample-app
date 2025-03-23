@@ -1,6 +1,5 @@
 import classes from "../pages/TTTPage.module.css";
 //import {useState} from "react";
-import {TurnDto} from "../pages/TurnDto.ts";
 
 //React.RefCallback<string> is needed when you need to refer to a DOM element
 /*for e.g.
@@ -15,28 +14,18 @@ function ExampleComponent() {
 }
  */
 
-const initialGameBoard: (null | string)[][] = [
-    [null, null, null],
-    [null, null, null],
-    [null, null, null],
-];
 
 
 interface Props {
     //callback:  () => void;
     callback:  (rowIndex: number, colIndex: number) => void;
-    turns: TurnDto[];
+    gameBoard: (string | null)[][];
+    winner: string;
     /*activePlayerSymbol: string;*/
 }
-export default function GameBoard( {callback/*, activePlayerSymbol*/, turns}: Props) {
+export default function GameBoard( {callback/*, activePlayerSymbol*/, gameBoard, winner}: Props) {
 
-    //Step 1: Create a game board from initialGameBoard
-    const gameBoard = initialGameBoard;
 
-    //Step 2: Update the game board based on the turns
-    turns.forEach( (turn) => {
-        gameBoard[turn.square.rowIndex][turn.square.colIndex] = turn.activePlayerSymbol;
-    });
 
     /*const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
@@ -50,8 +39,9 @@ export default function GameBoard( {callback/*, activePlayerSymbol*/, turns}: Pr
         callback();
     }*/
 
-    return (
+    return (<> <div hidden={winner == undefined} style={{color: 'green', fontSize: '40px'}}>Congratulation {winner} won the game!!</div>
         <ol id="game-board" className={classes.gameBoard}>
+
             {gameBoard.map((row, rowIndex) => (
                 <li key={rowIndex}>
                     <ol>
@@ -59,7 +49,7 @@ export default function GameBoard( {callback/*, activePlayerSymbol*/, turns}: Pr
                             row.map( (col, colIndex) => (
                                 <li key={colIndex}>
                                     {/*col is player symbol, remember??*/}
-                                    <button disabled={col != undefined}/*disabled={gameBoard[rowIndex][colIndex] != undefined}*/  onClick={ ()=> callback(rowIndex, colIndex)/*handleSelectSquare(rowIndex, colIndex)*/}>{col}</button>
+                                    <button disabled={col != undefined || winner != undefined}/*disabled={gameBoard[rowIndex][colIndex] != undefined}*/  onClick={ ()=> callback(rowIndex, colIndex)/*handleSelectSquare(rowIndex, colIndex)*/}>{col}</button>
                                     {/*col is player sombol*/}
                                 </li>
                             ))
@@ -72,6 +62,6 @@ export default function GameBoard( {callback/*, activePlayerSymbol*/, turns}: Pr
                     <li></li>
                 </ol>
             </li>
-        </ol>
+        </ol></>
     );
 }
