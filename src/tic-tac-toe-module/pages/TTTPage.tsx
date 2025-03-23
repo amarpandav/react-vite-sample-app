@@ -1,6 +1,6 @@
 import Player from "../components/Player.tsx";
 import classes from "./TTTPage.module.css";
-import PlayerTemp from "../components/PlayerTemp.tsx";
+//import PlayerTemp from "../components/PlayerTemp.tsx";
 import GameBoard from "../components/GameBoard.tsx";
 import {useState} from "react";
 
@@ -22,7 +22,7 @@ export default function TTTPage() {
                     <Player initialPlayerName="Rian" playerSymbol="X" isActive={activePlayerSymbol === 'X'}/>
                     <Player initialPlayerName="Amar" playerSymbol="O" isActive={activePlayerSymbol === 'O'}/>
 
-                    <PlayerTemp />
+                    {/*<PlayerTemp />*/}
                 </ol>
                <GameBoard callback={toggleActivePlayer} activePlayerSymbol={activePlayerSymbol}/>
             </div>
