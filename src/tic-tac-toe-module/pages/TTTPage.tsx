@@ -65,7 +65,7 @@ export default function TTTPage() {
         hasDraw = false;
     }
 
-    const calculateIfWeHaveAWinner = () => {
+    const deriveWinner = () => {
         let square1;
         let square2;
         let square3;
@@ -156,7 +156,7 @@ export default function TTTPage() {
         //Step 3: Update the game board based on the turns
         gameBoard[rowIndex][colIndex] = deriveActivePlayerSymbol(turnsLog);
 
-        calculateIfWeHaveAWinner();
+        deriveWinner();
 
     }
 
