@@ -20,7 +20,7 @@ interface Props {
     //callback:  () => void;
     callback:  (rowIndex: number, colIndex: number) => void;
     gameBoard: (string | null)[][];
-    winner: string;
+    winner: string | undefined;
     /*activePlayerSymbol: string;*/
 }
 export default function GameBoard( {callback/*, activePlayerSymbol*/, gameBoard, winner}: Props) {

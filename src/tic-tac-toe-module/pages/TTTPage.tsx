@@ -5,6 +5,7 @@ import GameBoard from "../components/GameBoard.tsx";
 import {useState} from "react";
 import Log from "../components/Log.tsx";
 import {SquareDto, TurnDto} from "./TurnDto.ts";
+import GameOver from "../components/GameOver.tsx";
 
 const gameBoard: (null | string)[][] = [
     [null, null, null],
@@ -14,7 +15,7 @@ const gameBoard: (null | string)[][] = [
 export default function TTTPage() {
 
     const [turns, setTurns] = useState<TurnDto[]>([]);
-    const [winner, setWinner] = useState<string>();
+    const [winner, setWinner] = useState<string | undefined>();
 
     //const [activePlayerSymbol, setActivePlayerSymbol] = useState('X'); no need to store activePlayerSymbol, recalculating it using useMemo.turns
     //Option 1: use useMemo to calculate activePlayerSymbol
@@ -148,6 +149,7 @@ export default function TTTPage() {
                             isActive={deriveActivePlayerSymbol(turns) === 'O'}/>
                     {/*<PlayerTemp />*/}
                 </ol>
+                {winner && <GameOver winner={winner}></GameOver>}
                 <GameBoard callback={handleSelectSquare} gameBoard={gameBoard} winner={winner}/>
             </div>
             <Log turns={turns}></Log>
