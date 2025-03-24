@@ -39,7 +39,7 @@ export default function GameBoard( {callback/*, activePlayerSymbol*/, gameBoard,
         callback();
     }*/
 
-    return (<> <div hidden={winner == undefined} style={{color: 'green', fontSize: '40px'}}>Congratulation {winner} won the game!!</div>
+    return (<>
         <ol id="game-board" className={classes.gameBoard}>
 
             {gameBoard.map((row, rowIndex) => (

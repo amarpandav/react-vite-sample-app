@@ -12,7 +12,13 @@ const initialGameBoard: (null | string)[][] = [
     [null, null, null],
     [null, null, null],
 ];
+
 export default function TTTPage() {
+
+    const [players, setPlayers] = useState<Record<string, string>>({
+        'X': 'Rian',
+        'Y': 'Amar'
+    });
 
     const [turnsLog, setTurnsLog] = useState<TurnDto[]>([]);
     const [winner, setWinner] = useState<string | undefined>();
@@ -68,7 +74,7 @@ export default function TTTPage() {
                 square2 = gameBoard[index][1];
                 square3 = gameBoard[index][2];
                 if(playerSymbol === square1 && playerSymbol === square2 && playerSymbol === square3){
-                    setWinner(playerSymbol);
+                    setWinner(players[playerSymbol]);
                     return;  // Exit the current loop
                 }
 
@@ -77,7 +83,7 @@ export default function TTTPage() {
                 square2 = gameBoard[1][index];
                 square3 = gameBoard[2][index];
                 if(playerSymbol === square1 && playerSymbol === square2 && playerSymbol === square3){
-                    setWinner(playerSymbol);
+                    setWinner(players[playerSymbol]);
                     return;  // Exit the current loop
                 }
             });
@@ -90,7 +96,7 @@ export default function TTTPage() {
             square2 = gameBoard[1][1];
             square3 = gameBoard[2][2];
             if(playerSymbol === square1 && playerSymbol === square2 && playerSymbol === square3){
-                setWinner(playerSymbol);
+                setWinner(players[playerSymbol]);
                 return;  // Exit the current loop
             }
 
@@ -98,19 +104,17 @@ export default function TTTPage() {
             square2 = gameBoard[1][1];
             square3 = gameBoard[2][0];
             if(playerSymbol === square1 && playerSymbol === square2 && playerSymbol === square3){
-                setWinner(playerSymbol);
+                setWinner(players[playerSymbol]);
                 return;  // Exit the current loop
             }
         });
 
-
-
-        console.log("winner is: "+ winner);
+        //console.log("winner is: "+ winner);
 
     }
 
     function handleSelectSquare(rowIndex: number, colIndex: number) {
-        console.log(gameBoard);
+        //console.log(gameBoard);
         //step 1. toggle the active player symbol
         //setActivePlayerSymbol((activePlayerSym) => activePlayerSym == 'X' ? 'O' : 'X');
 
