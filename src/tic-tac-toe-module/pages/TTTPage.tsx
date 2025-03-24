@@ -17,6 +17,8 @@ export default function TTTPage() {
     const [turns, setTurns] = useState<TurnDto[]>([]);
     const [winner, setWinner] = useState<string | undefined>();
 
+    const hasDraw = !winner && turns.length === 9;
+
     //const [activePlayerSymbol, setActivePlayerSymbol] = useState('X'); no need to store activePlayerSymbol, recalculating it using useMemo.turns
     //Option 1: use useMemo to calculate activePlayerSymbol
     /*const activePlayerSymbol = useMemo( () => {
@@ -77,7 +79,7 @@ export default function TTTPage() {
             if (winner) return;
             square1 = gameBoard[0][0];
             square2 = gameBoard[1][1];
-            square3 = gameBoard[0][2];
+            square3 = gameBoard[2][2];
             if(playerSymbol === square1 && playerSymbol === square2 && playerSymbol === square3){
                 setWinner(playerSymbol);
                 return;  // Exit the current loop
@@ -149,7 +151,7 @@ export default function TTTPage() {
                             isActive={deriveActivePlayerSymbol(turns) === 'O'}/>
                     {/*<PlayerTemp />*/}
                 </ol>
-                {winner && <GameOver winner={winner}></GameOver>}
+                {(winner || hasDraw) && <GameOver winner={winner}></GameOver>}
                 <GameBoard callback={handleSelectSquare} gameBoard={gameBoard} winner={winner}/>
             </div>
             <Log turns={turns}></Log>

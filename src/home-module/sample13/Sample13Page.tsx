@@ -34,7 +34,7 @@ export default function Sample13Page() {
                     Container: relative
                     {/* Box with position: absolute */}
                     <div className={classes.box}>
-                        Box: Absolute
+                        Box: absolute
                     </div>
                 </div>
 
