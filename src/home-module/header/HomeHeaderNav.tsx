@@ -43,6 +43,7 @@ export default function HomeHeaderNav() {
                         <li><NavLink to="/sample11/" className={ ({isActive})=> isActive ? classes.active : undefined}>Sample 11: async + await vs .then()</NavLink></li>
                         <li><NavLink to="/sample12/" className={ ({isActive})=> isActive ? classes.active : undefined}>Sample 12: Lazy loading pages</NavLink></li>
                         <li><NavLink to="/sample13/" className={ ({isActive})=> isActive ? classes.active : undefined}>Sample 13: css relative vs absolute</NavLink></li>
+                        <li><NavLink to="/sample14/" className={ ({isActive})=> isActive ? classes.active : undefined}>Sample 14: Styling react components</NavLink></li>
 
                     </ul>
                 </nav>

@@ -40,6 +40,7 @@ import {lazy, Suspense} from "react";
 import TTTLayout from "./tic-tac-toe-module/components/tttLayout/TTTLayout.tsx";
 import TTTPage from "./tic-tac-toe-module/pages/TTTPage.tsx";
 import Sample13Page from "./home-module/sample13/Sample13Page.tsx";
+import Sample14Page from "./home-module/sample14/Sample14Page.tsx";
 //import Sample12Page, {loader as sample12Loader} from "./home-module/sample12/Sample12Page.tsx";
 //import {ErrorBoundary} from "./components/errorBoundary/ErrorBoundary.tsx";
 //import {convertToDate} from "./events-sample-app/utils/dateUtils.ts";
@@ -83,6 +84,7 @@ const router = createBrowserRouter([
                         loader: (loaderFunctionArgs)=> import('./home-module/sample12/Sample12Page').then( module => module.loader(loaderFunctionArgs))
                     },
                     {path: 'sample13/', element: <Sample13Page></Sample13Page>},
+                    {path: 'sample14/', element: <Sample14Page></Sample14Page>},
 
                 ]
             },
