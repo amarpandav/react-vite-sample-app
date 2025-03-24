@@ -7,17 +7,19 @@ import Log from "../components/Log.tsx";
 import {SquareDto, TurnDto} from "./TurnDto.ts";
 import GameOver from "../components/GameOver.tsx";
 
-const gameBoard: (null | string)[][] = [
+const initialGameBoard: (null | string)[][] = [
     [null, null, null],
     [null, null, null],
     [null, null, null],
 ];
 export default function TTTPage() {
 
-    const [turns, setTurns] = useState<TurnDto[]>([]);
+    const [turnsLog, setTurnsLog] = useState<TurnDto[]>([]);
     const [winner, setWinner] = useState<string | undefined>();
 
-    const hasDraw = !winner && turns.length === 9;
+    let hasDraw = !winner && turnsLog.length === 9;
+
+    const [gameBoard, setGameBoard] = useState<(null | string)[][]>([...initialGameBoard].map(innerArray => [...innerArray]));
 
     //const [activePlayerSymbol, setActivePlayerSymbol] = useState('X'); no need to store activePlayerSymbol, recalculating it using useMemo.turns
     //Option 1: use useMemo to calculate activePlayerSymbol
@@ -43,6 +45,13 @@ export default function TTTPage() {
             turn.
         })
     }*/
+
+    function handleRestart() {
+        setTurnsLog([]);
+        setGameBoard([...initialGameBoard].map(innerArray => [...innerArray]));
+        setWinner(undefined);
+        hasDraw = false;
+    }
 
     const calculateIfWeHaveAWinner = () => {
         let square1;
@@ -109,7 +118,7 @@ export default function TTTPage() {
         //Don't merge states. Always replace them.
         //States are immutable, so we can't merge them. We can only replace them.
         //setTurns( (prevTunrs/*: {activePlayerSymbol: string, square: {rowIndex: number, colIndex: number}}[]*/) => {
-        setTurns((prevTurns: TurnDto[]) => {
+        setTurnsLog((prevTurns: TurnDto[]) => {
             const activePlayerSymbol = deriveActivePlayerSymbol(prevTurns);
             //activePlayerSymbol would have current active player however if we use that then we are merging two states here.
             //We know react is hacky, it will batch the state updates and then apply them. So, we can't rely on the activePlayerSymbol.
@@ -124,13 +133,13 @@ export default function TTTPage() {
             //const updatedTurns = [{activePlayerSymbol:activePlayerSymbol2, square: {rowIndex: rowIndex, colIndex: colIndex}},...turns];
             //const turnDto = new TurnDto(activePlayerSymbol2, new SquareDto(rowIndex, colIndex));
             const turnDto = new TurnDto(activePlayerSymbol, new SquareDto(rowIndex, colIndex));
-            const updatedTurns = [turnDto, ...turns];
+            const updatedTurns = [turnDto, ...turnsLog];
             return updatedTurns;
         })
         //window.alert(activePlayerSymbol);
 
         //Step 3: Update the game board based on the turns
-        gameBoard[rowIndex][colIndex] = deriveActivePlayerSymbol(turns);
+        gameBoard[rowIndex][colIndex] = deriveActivePlayerSymbol(turnsLog);
 
         calculateIfWeHaveAWinner();
 
@@ -146,15 +155,15 @@ export default function TTTPage() {
                     */}
 
                     <Player initialPlayerName="Rian" playerSymbol="X"
-                            isActive={deriveActivePlayerSymbol(turns) === 'X'}/>
+                            isActive={deriveActivePlayerSymbol(turnsLog) === 'X'}/>
                     <Player initialPlayerName="Amar" playerSymbol="O"
-                            isActive={deriveActivePlayerSymbol(turns) === 'O'}/>
+                            isActive={deriveActivePlayerSymbol(turnsLog) === 'O'}/>
                     {/*<PlayerTemp />*/}
                 </ol>
-                {(winner || hasDraw) && <GameOver winner={winner}></GameOver>}
+                {(winner || hasDraw) && <GameOver winner={winner} callback={handleRestart}></GameOver>}
                 <GameBoard callback={handleSelectSquare} gameBoard={gameBoard} winner={winner}/>
             </div>
-            <Log turns={turns}></Log>
+            <Log turns={turnsLog}></Log>
 
             {/*<div className={classes.amarContainer}>
                 <div>Amar's playground (we need 3x4 grid. we can start with 3 rows then add 4 columns)</div>
