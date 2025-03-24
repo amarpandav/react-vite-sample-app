@@ -12,13 +12,19 @@ const initialGameBoard: (null | string)[][] = [
     [null, null, null],
     [null, null, null],
 ];
-
+export interface PlayerDto {
+    symbol: string;
+    name: string;
+}
 export default function TTTPage() {
 
-    const [players, setPlayers] = useState<Record<string, string>>({
-        'X': 'Rian',
-        'Y': 'Amar'
-    });
+    const [players, setPlayers] = useState<PlayerDto[]>([{
+        symbol: 'X',
+        name: 'Rian'
+    }, {
+        symbol: 'O',
+        name: 'Amar'
+    }]);
 
     const [turnsLog, setTurnsLog] = useState<TurnDto[]>([]);
     const [winner, setWinner] = useState<string | undefined>();
@@ -64,17 +70,19 @@ export default function TTTPage() {
         let square2;
         let square3;
 
+        let player;
         //step 1: check horizontal and vertical winning combinations
-        ['X', 'O'].forEach( (playerSymbol: string) => {
+        ['X', 'O'].forEach((playerSymbol: string) => {
             if (winner) return;
-            [0, 1, 2].forEach( (index: number) => {
+            [0, 1, 2].forEach((index: number) => {
                 if (winner) return;
                 //row wise comparison
                 square1 = gameBoard[index][0];
                 square2 = gameBoard[index][1];
                 square3 = gameBoard[index][2];
-                if(playerSymbol === square1 && playerSymbol === square2 && playerSymbol === square3){
-                    setWinner(players[playerSymbol]);
+                if (playerSymbol === square1 && playerSymbol === square2 && playerSymbol === square3) {
+                    player = players.find( (player) => player.symbol === playerSymbol);
+                    if(player) {setWinner(player.name)};
                     return;  // Exit the current loop
                 }
 
@@ -82,29 +90,32 @@ export default function TTTPage() {
                 square1 = gameBoard[0][index];
                 square2 = gameBoard[1][index];
                 square3 = gameBoard[2][index];
-                if(playerSymbol === square1 && playerSymbol === square2 && playerSymbol === square3){
-                    setWinner(players[playerSymbol]);
+                if (playerSymbol === square1 && playerSymbol === square2 && playerSymbol === square3) {
+                    player = players.find( (player) => player.symbol === playerSymbol);
+                    if(player) {setWinner(player.name)};
                     return;  // Exit the current loop
                 }
             });
         });
 
         //step 2: check diagonal winning combinations
-        ['X', 'O'].forEach( (playerSymbol: string) => {
+        ['X', 'O'].forEach((playerSymbol: string) => {
             if (winner) return;
             square1 = gameBoard[0][0];
             square2 = gameBoard[1][1];
             square3 = gameBoard[2][2];
-            if(playerSymbol === square1 && playerSymbol === square2 && playerSymbol === square3){
-                setWinner(players[playerSymbol]);
+            if (playerSymbol === square1 && playerSymbol === square2 && playerSymbol === square3) {
+                player = players.find( (player) => player.symbol === playerSymbol);
+                if(player) {setWinner(player.name)};
                 return;  // Exit the current loop
             }
 
             square1 = gameBoard[0][2];
             square2 = gameBoard[1][1];
             square3 = gameBoard[2][0];
-            if(playerSymbol === square1 && playerSymbol === square2 && playerSymbol === square3){
-                setWinner(players[playerSymbol]);
+            if (playerSymbol === square1 && playerSymbol === square2 && playerSymbol === square3) {
+                player = players.find( (player) => player.symbol === playerSymbol);
+                if(player) {setWinner(player.name)};
                 return;  // Exit the current loop
             }
         });
@@ -149,19 +160,43 @@ export default function TTTPage() {
 
     }
 
+    function handleNameChange(newPlayer: PlayerDto) {
+        setPlayers( (players) => {
+            return players.map( (player) => {
+                if(player.symbol === newPlayer.symbol) {
+                    player.name = newPlayer.name;
+                }
+                return player;
+            })
+        })
+       /* const player: PlayerDto | undefined = players.find( (player) => player.symbol === newPlayer.symbol);
+        if(player) {
+            player.name = newPlayer.name;
+            //setPlayers([...players, player]);
+        }*/
+    }
+
     return (
         <>
             <div id="game-container" className={classes.gameContainer}>
                 <ol id="players" className={`${classes.players} ${classes.highlightPlayer}`}>
-                    {/*
-                    <Player initialPlayerName="Rian" playerSymbol="X" isActive={activePlayerSymbol === 'X'}/>
-                    <Player initialPlayerName="Amar" playerSymbol="O" isActive={activePlayerSymbol === 'O'}/>
-                    */}
+                    {
+                        players.map( (player) => (
+                            <Player playerDto={player} key={player.symbol}
+                                    isActive={deriveActivePlayerSymbol(turnsLog) === player.symbol}
+                                    handleNameChangeCallback={handleNameChange}/>
+                        ))
 
-                    <Player initialPlayerName="Rian" playerSymbol="X"
+                        /*
+                        * <Player initialPlayerName="Rian" playerSymbol="X"
                             isActive={deriveActivePlayerSymbol(turnsLog) === 'X'}/>
-                    <Player initialPlayerName="Amar" playerSymbol="O"
+                          <Player initialPlayerName="Amar" playerSymbol="O"
                             isActive={deriveActivePlayerSymbol(turnsLog) === 'O'}/>
+                        * */
+                    }
+
+
+
                     {/*<PlayerTemp />*/}
                 </ol>
                 {(winner || hasDraw) && <GameOver winner={winner} callback={handleRestart}></GameOver>}
