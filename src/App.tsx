@@ -3,50 +3,50 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'*/
 import './App.css'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import HomePage from "./home-module/home/HomePage.tsx";
-import Sample1Page from "./home-module/sample1/Sample1Page.tsx";
-import Sample2Page from "./home-module/sample2/Sample2Page.tsx";
-import Sample3Page from "./home-module/sample3/Sample3Page.tsx";
-import Sample4Page from "./home-module/sample4/Sample4Page.tsx";
-import Sample5Page from "./home-module/sample5/Sample5Page.tsx";
-import Sample6Page from "./home-module/sample6/Sample6Page.tsx";
-import Sample7Page from "./home-module/sample7/Sample7Page.tsx";
-import Sample8Page from "./home-module/sample8/Sample8Page.tsx";
-import RootLayout from "./home-module/layout/RootLayout.tsx";
-import AdminSystemSettings from "./admin-module/adminSysSettings/AdminSystemSettings.tsx";
-import AdminHome from "./admin-module/adminHome/AdminHome.tsx";
-import AdminLayout from "./admin-module/adminLayout/AdminLayout.tsx";
-import RouteErrorPage from "./home-module/error/RouteErrorPage.tsx";
-import Sample9Page from "./home-module/sample9/Sample9Page.tsx";
-import Sample10ProductPage from "./home-module/sample10/Sample10ProductPage.tsx";
-import Sample10ProductDetailsPage from "./home-module/sample10/Sample10ProductDetailsPage.tsx";
-import EventsLayout from "./events-module/eventsLayout/EventsLayout.tsx";
+import HomePage from "./homeModule/pages/Home/HomePage.tsx";
+import Sample1Page from "./homeModule/pages/Sample1/Sample1Page.tsx";
+import Sample2Page from "./homeModule/pages/Sample2/Sample2Page.tsx";
+import Sample3Page from "./homeModule/pages/Sample3/Sample3Page.tsx";
+import Sample4Page from "./homeModule/pages/Sample4/Sample4Page.tsx";
+import Sample5Page from "./homeModule/pages/Sample5/Sample5Page.tsx";
+import Sample6Page from "./homeModule/pages/Sample6/Sample6Page.tsx";
+import Sample7Page from "./homeModule/pages/Sample7/Sample7Page.tsx";
+import Sample8Page from "./homeModule/pages/Sample8/Sample8Page.tsx";
+import RootLayout from "./homeModule/layouts/RootLayout.tsx";
+import AdminSystemSettings from "./adminModule/components/SysSettings/AdminSystemSettings.tsx";
+import AdminHome from "./adminModule/components/Home/AdminHome.tsx";
+import AdminLayout from "./adminModule/layouts/AdminLayout.tsx";
+import RouteErrorPage from "./homeModule/components/Error/RouteErrorPage.tsx";
+import Sample9Page from "./homeModule/pages/Sample9/Sample9Page.tsx";
+import Sample10ProductPage from "./homeModule/pages/Sample10/Sample10ProductPage.tsx";
+import Sample10ProductDetailsPage from "./homeModule/pages/Sample10/Sample10ProductDetailsPage.tsx";
+import EventsLayout from "./eventsModule/layouts/EventsLayout.tsx";
 import EventDetailsPage, {
     action as deleteEventAction,
     loader as eventDetailsLoader
-} from "./events-module/pages/EventDetailsPage.tsx";
-import NewEventPage from "./events-module/pages/NewEventPage.tsx";
-import EditEventPage from "./events-module/pages/EditEventPage.tsx";
-import {action as eventFormAction} from "./events-module/eventForm/EventForm.tsx";
+} from "./eventsModule/pages/EventDetailsPage.tsx";
+import NewEventPage from "./eventsModule/pages/NewEventPage.tsx";
+import EditEventPage from "./eventsModule/pages/EditEventPage.tsx";
+import {action as eventFormAction} from "./eventsModule/components/EventForm/EventForm.tsx";
 
-import EventsPage, {loader as eventsLoader} from "./events-module/pages/EventsPage.tsx";
-import HomeLayout from "./home-module/layout/HomeLayout.tsx";
-import NewsLetterPage, {action as newsLetterAction} from "./home-module/newsLetter/NewsLetterPage.tsx";
+import EventsPage, {loader as eventsLoader} from "./eventsModule/pages/EventsPage.tsx";
+import HomeModuleLayout from "./homeModule/layouts/HomeModuleLayout.tsx";
+import NewsLetterPage, {action as newsLetterAction} from "./homeModule/components/NewsLetter/NewsLetterPage.tsx";
 import EventsPageWithSuspenseAndAwait, {
     loader as eventsLoaderWithSuspenseAndAwait
-} from "./events-module/pages/EventsPageWithSuspenseAndAwait.tsx";
-import Sample11Page from "./home-module/sample11/Sample11Page.tsx";
+} from "./eventsModule/pages/EventsPageWithSuspenseAndAwait.tsx";
+import Sample11Page from "./homeModule/pages/Sample11/Sample11Page.tsx";
 import {lazy, Suspense} from "react";
-import TTTLayout from "./tic-tac-toe-module/components/tttLayout/TTTLayout.tsx";
-import TTTPage from "./tic-tac-toe-module/pages/TTTPage.tsx";
-import Sample13Page from "./home-module/sample13/Sample13Page.tsx";
-import Sample14Page from "./home-module/sample14/Sample14Page.tsx";
-import InvestPage from "./invest-module/pages/InvestPage.tsx";
+import TTTLayout from "./ticTacToeModule/layouts/TTTLayout.tsx";
+import TTTPage from "./ticTacToeModule/pages/TTTPage.tsx";
+import Sample13Page from "./homeModule/pages/Sample13/Sample13Page.tsx";
+import Sample14Page from "./homeModule/pages/Sample14/Sample14Page.tsx";
+import InvestPage from "./investModule/pages/InvestPage.tsx";
 //import Sample12Page, {loader as sample12Loader} from "./home-module/sample12/Sample12Page.tsx";
 //import {ErrorBoundary} from "./components/errorBoundary/ErrorBoundary.tsx";
 //import {convertToDate} from "./events-sample-app/utils/dateUtils.ts";
 
-const Sample12Page = lazy(() => import('./home-module/sample12/Sample12Page'));
+const Sample12Page = lazy(() => import('./homeModule/pages/Sample12/Sample12Page'));
 
 const router = createBrowserRouter([
 
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '',/*other alternative: To turn any route into Index route. {index: true, element: <HomePage></HomePage>} */
-                element: <HomeLayout></HomeLayout>,
+                element: <HomeModuleLayout></HomeModuleLayout>,
                 children: [
                     //option 1: Absolute path
                     //{path: '/home', element: <HomePage></HomePage>},
@@ -82,7 +82,7 @@ const router = createBrowserRouter([
                         /*path: 'sample12/', element: <Sample12Page></Sample12Page>, loader: sample12Loader*/
                         path: 'sample12/',
                         element: <Suspense fallback={<p>Loading Sample12Page...</p>}><Sample12Page></Sample12Page></Suspense>,
-                        loader: (loaderFunctionArgs)=> import('./home-module/sample12/Sample12Page').then( module => module.loader(loaderFunctionArgs))
+                        loader: (loaderFunctionArgs)=> import('./homeModule/pages/Sample12/Sample12Page').then(module => module.loader(loaderFunctionArgs))
                     },
                     {path: 'sample13/', element: <Sample13Page></Sample13Page>},
                     {path: 'sample14/', element: <Sample14Page></Sample14Page>},
