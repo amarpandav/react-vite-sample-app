@@ -69,6 +69,11 @@ npm install react@19 react-dom@19
 - const memoizedValue = useMemo(() => {...logic referring a and b}}, [a, b]);
 # React + TypeScript + Vite
 
+## useRefs()
+- direct access to DOM elements
+- managing values with Refs
+
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
