@@ -41,7 +41,7 @@ import TTTLayout from "./ticTacToeModule/layouts/TTTLayout.tsx";
 import TTTPage from "./ticTacToeModule/pages/TTTPage.tsx";
 import Sample13Page from "./homeModule/pages/Sample13/Sample13Page.tsx";
 import Sample14Page from "./homeModule/pages/Sample14/Sample14Page.tsx";
-import InvestPage from "./investModule/pages/InvestPage.tsx";
+import InvestHomePage from "./investModule/pages/InvestHomePage.tsx";
 //import Sample12Page, {loader as sample12Loader} from "./home-module/sample12/Sample12Page.tsx";
 //import {ErrorBoundary} from "./components/errorBoundary/ErrorBoundary.tsx";
 //import {convertToDate} from "./events-sample-app/utils/dateUtils.ts";
@@ -118,7 +118,7 @@ const router = createBrowserRouter([
         errorElement: <RouteErrorPage></RouteErrorPage>,
         children: [
             {
-                index: true, element: <InvestPage></InvestPage>
+                index: true, element: <InvestHomePage></InvestHomePage>
             }
         ]
     },
