@@ -6,7 +6,7 @@ export default function RefsAndPortalsHomePage() {
         <>
             <div id="modal"></div>
             <div id="content" className={classes.content}>
-                <header>
+                <header className={classes.myHeader}>
                     <h1>The <em>Almost</em> Final Countdown</h1>
                     <p>Stop the timer once you estimate that time is (almost) up</p>
                 </header>

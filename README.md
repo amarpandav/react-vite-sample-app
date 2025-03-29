@@ -70,6 +70,7 @@ npm install react@19 react-dom@19
 # React + TypeScript + Vite
 
 ## useRefs()
+- ref is a value similar to state but its special kind of value manged by react
 - direct access to DOM elements
 - managing values with Refs
 

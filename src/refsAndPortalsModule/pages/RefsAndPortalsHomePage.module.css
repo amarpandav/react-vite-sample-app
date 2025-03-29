@@ -21,7 +21,14 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
 }
 
-/*h1 {
+.myHeader p {
+    font-size: 1.2rem;
+    margin: 0;
+    text-align: center;
+    color: #c6f4f2;
+}
+
+.myHeader h1 {
     font-family: 'Handjet', monospace;
     text-align: center;
     text-transform: uppercase;
@@ -31,17 +38,12 @@
     margin: 0;
 }
 
-h1 em {
+.myHeader h1 em {
     font-style: normal;
     color: #00eeff;
 }
 
-header p {
-    font-size: 1.2rem;
-    margin: 0;
-    text-align: center;
-    color: #c6f4f2;
-}*/
+
 
 .challenges {
     max-width: 50rem;
