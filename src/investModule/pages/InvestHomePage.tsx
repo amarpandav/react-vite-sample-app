@@ -4,7 +4,7 @@ import Header from "../components/Header/Header.tsx";
 import UserInput from "../components/UserInput/UserInput.tsx";
 import {useState} from "react";
 import Results from "../components/Results/Results.tsx";
-
+import classes from "./InvestHomePage.module.css";
 
 //If we make this a class, we can use the constructor to set the default values
 //However return {...prevInvestmentDto, [inputIdentifier]: newValue} won't work because { ...prevInvestmentDto }
@@ -46,11 +46,13 @@ export default function InvestHomePage() {
     }
 
 
+    const inputIsValid = investmentDto.duration > 0;
     return (
         <>
             <Header></Header>
             <UserInput investmentDto={investmentDto} callback={handleChange}></UserInput>
-            <Results investmentDto={investmentDto}></Results>
+            {!inputIsValid && <p className={classes.center}>Please enter duration greater than 0</p>}
+            {inputIsValid && <Results investmentDto={investmentDto}></Results>}
         </>
     );
 }
