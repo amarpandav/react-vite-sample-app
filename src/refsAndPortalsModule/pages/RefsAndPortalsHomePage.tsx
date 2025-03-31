@@ -1,5 +1,6 @@
-import Player from "../components/Player.tsx";
+import Player from "../components/Player/Player.tsx";
 import classes from "./RefsAndPortalsHomePage.module.css";
+import TimerChallenge from "../components/TimerChallenge/TimeChallenge.tsx";
 
 export default function RefsAndPortalsHomePage() {
     return (
@@ -12,6 +13,12 @@ export default function RefsAndPortalsHomePage() {
                 </header>
 
                 <Player/>
+                <div id="challenges" className={classes.challenges}>
+                    <TimerChallenge title='Easy' targetTime={1} />
+                    <TimerChallenge title='Not Easy' targetTime={5} />
+                    <TimerChallenge title='Getting tough' targetTime={10} />
+                    <TimerChallenge title='Pros only' targetTime={15} />
+                </div>
             </div>
         </>
     );

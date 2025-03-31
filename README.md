@@ -70,10 +70,12 @@ npm install react@19 react-dom@19
 # React + TypeScript + Vite
 
 ## useRefs()
-- ref is a value similar to state but its special kind of value manged by react
+- ref is a value similar to state but its special kind of value managed by react
 - direct access to DOM elements
 - managing values with Refs
-
+- state and refs are two different things
+- when ref value changes, component is not re-rendered 
+- 
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

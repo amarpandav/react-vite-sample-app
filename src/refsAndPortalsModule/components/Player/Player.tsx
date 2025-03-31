@@ -7,7 +7,10 @@ export default function Player() {
     const [playerName, setPlayerName] = useState<string | null>();
 
     function handleClick() {
-        setPlayerName( ()=> playerNameRef?.current?.value)
+        setPlayerName( ()=> playerNameRef?.current?.value);
+
+        //reset the input field
+
     }
 
     return (
