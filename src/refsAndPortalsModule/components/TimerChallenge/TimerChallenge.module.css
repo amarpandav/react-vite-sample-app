@@ -48,3 +48,15 @@
 .challenge .active {
     animation: flash 1s infinite;
 }
+
+@keyframes flash {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}

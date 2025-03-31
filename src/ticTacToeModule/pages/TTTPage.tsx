@@ -7,11 +7,15 @@ import Log from "../components/Log.tsx";
 import {SquareDto, TurnDto} from "./TurnDto.ts";
 import GameOver from "../components/GameOver.tsx";
 
+
+//Anything outside this function will be shared across all instances of this component hence its a bad practice to keep initialGameBoard outside this
+//component
 const initialGameBoard: (null | string)[][] = [
     [null, null, null],
     [null, null, null],
     [null, null, null],
 ];
+
 export interface PlayerDto {
     symbol: string;
     name: string;
