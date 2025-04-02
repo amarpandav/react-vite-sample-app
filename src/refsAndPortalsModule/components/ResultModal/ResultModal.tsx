@@ -27,13 +27,13 @@ whatever we want like showModal here.
     });*/
 
     return (
-        <dialog ref={ref} className={classes.resultModal}>
+        <dialog ref={ref} className={classes.resultModal} onClose={onResetCallback}>
             {userLost && <h2>You lost</h2>}
             {!userLost && <h2>You Score: {score}</h2>}
             <p>The target time was <strong>{targetTimeInSecs}</strong> seconds.</p>
 
             <p>You stopped the timer with <strong>{formattedRemainingTimeInSecs} seconds left</strong> seconds.</p>
-            <form method="dialog" onSubmit={onResetCallback}>
+            <form method="dialog" /*onSubmit={onResetCallback} will get automatically called when close button is clicked but not needed as we have onClose for dialog*/>
                 <button>Close</button>
             </form>
 
