@@ -14,10 +14,10 @@ export default function RefsAndPortalsHomePage() {
 
                 <Player/>
                 <div id="challenges" className={classes.challenges}>
-                    <TimerChallenge title='Easy' targetTime={1} />
-                    <TimerChallenge title='Not Easy' targetTime={5} />
-                    <TimerChallenge title='Getting tough' targetTime={10} />
-                    <TimerChallenge title='Pros only' targetTime={15} />
+                    <TimerChallenge title='Easy' targetTimeInSecs={1} />
+                    <TimerChallenge title='Not Easy' targetTimeInSecs={5} />
+                    <TimerChallenge title='Getting tough' targetTimeInSecs={10} />
+                    <TimerChallenge title='Pros only' targetTimeInSecs={15} />
                 </div>
             </div>
         </>
