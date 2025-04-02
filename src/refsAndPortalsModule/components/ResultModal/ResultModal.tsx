@@ -1,4 +1,5 @@
 import classes from "./ResultModal.module.css";
+import {createPortal} from "react-dom";
 //import {useImperativeHandle} from "react";
 
 interface Props {
@@ -26,7 +27,7 @@ whatever we want like showModal here.
         }
     });*/
 
-    return (
+    return ( createPortal(
         <dialog ref={ref} className={classes.resultModal} onClose={onResetCallback}>
             {userLost && <h2>You lost</h2>}
             {!userLost && <h2>You Score: {score}</h2>}
@@ -37,6 +38,7 @@ whatever we want like showModal here.
                 <button>Close</button>
             </form>
 
-        </dialog>
+        </dialog>, document.getElementById('modal') as HTMLDivElement
+        )
     );
 }
