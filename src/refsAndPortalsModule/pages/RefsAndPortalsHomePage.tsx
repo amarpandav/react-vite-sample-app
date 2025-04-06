@@ -5,7 +5,6 @@ import TimerChallenge from "../components/TimerChallenge/TimeChallenge.tsx";
 export default function RefsAndPortalsHomePage() {
     return (
         <>
-            <div id="modal"></div>
             <div id="content" className={classes.content}>
                 <header className={classes.myHeader}>
                     <h1>The <em>Almost</em> Final Countdown</h1>

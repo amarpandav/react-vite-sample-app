@@ -37,7 +37,7 @@ npm install react@19 react-dom@19
 - when route loader() returns response, how to access it in a component
 -  const eventJson = useLoaderData().event;
 -  const event: EventDto = EventDto.parseJson(eventJson);
-- 
+
 ## useParams()
 - to get the data from the URL
 - const params = useParams();
@@ -75,7 +75,11 @@ npm install react@19 react-dom@19
 - managing values with Refs
 - state and refs are two different things
 - when ref value changes, component is not re-rendered 
-- 
+
+## createPortal
+- surround the component with createPortal to teleport the component to another part of the DOM
+- for e.g. modals, tooltips, etc.
+- index.html would have <div id="modal"></div> so thats its relatively close to the body tag
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
