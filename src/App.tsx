@@ -43,6 +43,7 @@ import Sample13Page from "./homeModule/pages/Sample13/Sample13Page.tsx";
 import Sample14Page from "./homeModule/pages/Sample14/Sample14Page.tsx";
 import InvestHomePage from "./investModule/pages/InvestHomePage.tsx";
 import RefsAndPortalsHomePage from "./refsAndPortalsModule/pages/RefsAndPortalsHomePage.tsx";
+import ElegantContextHomePage from "./elegnatContextModule/pages/ElegantContextHomePage.tsx";
 //import Sample12Page, {loader as sample12Loader} from "./home-module/sample12/Sample12Page.tsx";
 //import {ErrorBoundary} from "./components/errorBoundary/ErrorBoundary.tsx";
 //import {convertToDate} from "./events-sample-app/utils/dateUtils.ts";
@@ -120,6 +121,16 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true, element: <RefsAndPortalsHomePage></RefsAndPortalsHomePage>
+            }
+        ]
+    },
+    {
+        path: '/elegant-context-module',
+        element: <RootLayout></RootLayout>,
+        errorElement: <RouteErrorPage></RouteErrorPage>,
+        children: [
+            {
+                index: true, element: <ElegantContextHomePage></ElegantContextHomePage>
             }
         ]
     },
