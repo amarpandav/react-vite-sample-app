@@ -15,7 +15,7 @@ export default function ResultModal({ref, targetTimeInSecs, timeRemainingInMs, o
     const formattedRemainingTimeInSecs = (timeRemainingInMs / 1000).toFixed(2);
     const score = Math.round ((1 - timeRemainingInMs / (targetTimeInSecs * 1000)) * 100);
     /*YOu need to use forwardRef to get it working :
-useImperativeHandle() is used to decouple this components and its insights to the parent component. so ourside would call open() but internally we can call
+useImperativeHandle() is used to decouple this components and its insights to the parent component. so outside would call open() but internally we can call
 whatever we want like showModal here.
  We can replace <dialog> with <div> and it will work as expected.
 

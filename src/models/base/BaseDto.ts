@@ -1,5 +1,5 @@
 // src/models/common/BaseDto.ts
-import {EntityId} from './EntityId';
+import {EntityId} from './EntityId.ts';
 
 export abstract class BaseDto {
     constructor(

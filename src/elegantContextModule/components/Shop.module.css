@@ -1,0 +1,10 @@
+.shop {
+    width: 70%;
+    margin: 2rem auto;
+}
+
+.shop h2 {
+    font-size: 1.5rem;
+    color: #a59b8b;
+    text-transform: uppercase;
+}

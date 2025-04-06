@@ -1,7 +1,7 @@
 import {EventId} from "./EventId.ts";
-import {EntityId} from "../base/EntityId.ts";
+import {EntityId} from "../../../models/base/EntityId.ts";
 import {parseISODate} from "../../../utils/dateUtils.ts";
-import {BaseDto} from "../base/BaseDto.ts";
+import {BaseDto} from "../../../models/base/BaseDto.ts";
 
 /**
  * Model representing an Event (DB table).
