@@ -4,6 +4,7 @@ import {EntityId} from "../../models/base/EntityId.ts";
 import {ProductDto} from "../models/ProductDto.ts";
 import Header from "../components/Header.tsx";
 import Shop from "../components/Shop.tsx";
+import classes from "./ElegantContextHomePage.module.css";
 
 export interface ShoppingCart {
     items: ProductDto[];
@@ -78,12 +79,12 @@ export default function ElegantContextHomePage() {
     }
 
     return (
-        <>
+        <div className={classes.ecHomePage}>
             <Header
                 cart={shoppingCart}
                 onUpdateCartItemQuantityCallback={handleUpdateCartItemQuantityCallBack}
             />
             <Shop onAddToCartCallback={handleAddItemToCartCallback} />
-        </>
+        </div>
     );
 }

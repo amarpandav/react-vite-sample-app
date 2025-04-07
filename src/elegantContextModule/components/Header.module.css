@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&display=swap');
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem 15%;
+}
+
+.main-title {
+    display: flex;
+    align-items: center;
+}
+
+.main-title img {
+    width: 5rem;
+    margin-right: 1.5rem;
+}
+
+
+.main-header h1 {
+    text-align: center;
+    text-transform: uppercase;
+    color: #edbf68;
+    text-shadow: 0 0 4px rgba(35, 34, 34, 0.4);
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.main-header button {
+    background: #edbf68;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1.5rem;
+    color: #201e1a;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+#main-header button:hover {
+    background: #f5b744;
+}

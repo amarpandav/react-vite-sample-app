@@ -10,7 +10,7 @@ interface Props {
 
 export default function Product({productDto, onAddToCartCallback}: Props) {
     return (
-        <article className={classes.products}>
+        <article className={classes.product}>
             <img src={productDto.image} alt={productDto.title}/>
             <div className={classes.productContent}>
                 <div>

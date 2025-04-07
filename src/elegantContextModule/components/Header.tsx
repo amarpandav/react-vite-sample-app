@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import CartModal, {CartModalHandle} from './CartModal.jsx';
 import {ShoppingCart} from "../pages/ElegantContextHomePage.tsx";
 import {EntityId} from "../../models/base/EntityId.ts";
+import classes from "./Header.module.css";
 
 interface Props {
     cart: ShoppingCart;
@@ -38,9 +39,9 @@ export default function Header({ cart, onUpdateCartItemQuantityCallback }: Props
         actions={modalActions}
         onUpdateCartItemQuantityCallback={onUpdateCartItemQuantityCallback}
       />
-      <header id="main-header">
-        <div id="main-title">
-          <img src="logo.png" alt="Elegant model" />
+      <header id="main-header" className={classes.mainHeader}>
+        <div id="main-title" className={classes.mainTitle}>
+          <img src="ec-logo.png" alt="Elegant model" />
           <h1>Elegant Context</h1>
         </div>
         <p>

@@ -81,6 +81,10 @@ npm install react@19 react-dom@19
 - for e.g. modals, tooltips, etc.
 - index.html would have <div id="modal"></div> so thats its relatively close to the body tag
 
+## React's Context API
+- sharing data between components without passing props
+
+# React + TypeScript + Vite
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

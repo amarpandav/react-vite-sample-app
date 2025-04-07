@@ -3,6 +3,7 @@ import {createPortal} from 'react-dom';
 import Cart from './Cart';
 import {ProductDto} from "../models/ProductDto.ts";
 import {EntityId} from "../../models/base/EntityId.ts";
+import classes from "./CartModal.module.css";
 
 interface Props {
     cartItems: ProductDto[];
@@ -31,10 +32,10 @@ const CartModal = forwardRef<CartModalHandle, Props>(function Modal(
     });
 
     return createPortal(
-        <dialog id="modal" ref={dialog}>
+        <dialog id="modal" ref={dialog} className={classes.modal}>
             <h2>{title}</h2>
-            <Cart items={cartItems} onUpdateItemQuantity={onUpdateCartItemQuantityCallback}/>
-            <form method="dialog" id="modal-actions">
+            <Cart items={cartItems} onUpdateItemQuantityCallback={onUpdateCartItemQuantityCallback}/>
+            <form method="dialog" id="modal-actions" >
                 {actions}
             </form>
         </dialog>,

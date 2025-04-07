@@ -13,7 +13,7 @@ export default function Shop({ onAddToCartCallback }: Props) {
     <section id="shop" className={classes.shop}>
       <h2>Elegant Clothing For Everyone</h2>
 
-      <ul id="products">
+      <ul id="products" className={classes.products}>
         {DUMMY_PRODUCTS.map((product: ProductDto) => (
           <li key={product.entityId.uuid}>
             <Product productDto={product} onAddToCartCallback={onAddToCartCallback} />
