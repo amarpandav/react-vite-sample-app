@@ -10,6 +10,12 @@ npm start: backend
 
 # Upgrade React to 19
 npm install react@19 react-dom@19
+- Upgrade only devDependencies to latest
+  - To check difference 
+    - ncu --target latest --dep dev
+  - to update
+    - ncu --target latest --dep dev -u
+    - then run npm install
 
 # Examples learnt
 ## useNavigate
@@ -83,7 +89,7 @@ npm install react@19 react-dom@19
 
 ## React's Context API
 - sharing data between components without passing props
-
+- files are stored in src/store folder
 # React + TypeScript + Vite
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
